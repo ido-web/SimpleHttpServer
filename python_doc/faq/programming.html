@@ -1,0 +1,1770 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>编程常见问题 &#8212; Python 3.7.3 文档</title>
+    <link rel="stylesheet" href="../_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="在 Python 3.7.3 文档 中搜索"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="关于这些文档" href="../about.html" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="copyright" title="版权所有" href="../copyright.html" />
+    <link rel="next" title="设计和历史常见问题" href="design.html" />
+    <link rel="prev" title="Python常见问题" href="general.html" />
+    <link rel="shortcut icon" type="image/png" href="../_static/py.png" />
+    <link rel="canonical" href="https://docs.python.org/3/faq/programming.html" />
+    
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../_static/switchers.js"></script>
+    
+    
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+ 
+
+  </head><body>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="design.html" title="设计和历史常见问题"
+             accesskey="N">下一页</a> |</li>
+        <li class="right" >
+          <a href="general.html" title="Python常见问题"
+             accesskey="P">上一页</a> |</li>
+        <li><img src="../_static/py.png" alt=""
+                 style="vertical-align: middle; margin-top: -1px"/></li>
+        <li><a href="https://www.python.org/">Python</a> &#187;</li>
+        <li>
+          <span class="language_switcher_placeholder">zh_CN</span>
+          <span class="version_switcher_placeholder">3.7.3</span>
+          <a href="../index.html">文档</a> &#187;
+        </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python 常见问题</a> &#187;</li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="快速搜索" type="text" name="q" />
+          <input type="submit" value="转向" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+         |
+    </li>
+
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="programming-faq">
+<h1><a class="toc-backref" href="#id2">编程常见问题</a><a class="headerlink" href="#programming-faq" title="永久链接至标题">¶</a></h1>
+<div class="contents topic" id="id1">
+<p class="topic-title first">目录</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#programming-faq" id="id2">编程常见问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#general-questions" id="id3">一般问题</a></p>
+<ul>
+<li><p><a class="reference internal" href="#is-there-a-source-code-level-debugger-with-breakpoints-single-stepping-etc" id="id4">Python 有没有提供断点与单步调试等功能的，源码层次的调试器？</a></p></li>
+<li><p><a class="reference internal" href="#is-there-a-tool-to-help-find-bugs-or-perform-static-analysis" id="id5">有没有工具来帮助找寻漏洞或进行静态分析？</a></p></li>
+<li><p><a class="reference internal" href="#how-can-i-create-a-stand-alone-binary-from-a-python-script" id="id6">我如何能够通过一个 Python 脚本创建一个独立运行的二进制文件？</a></p></li>
+<li><p><a class="reference internal" href="#are-there-coding-standards-or-a-style-guide-for-python-programs" id="id7">是否有编程标准或Python程序的样式指南？</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#core-language" id="id8">核心语言</a></p>
+<ul>
+<li><p><a class="reference internal" href="#why-am-i-getting-an-unboundlocalerror-when-the-variable-has-a-value" id="id9">当变量有值时，为什么会出现UnboundLocalError？</a></p></li>
+<li><p><a class="reference internal" href="#what-are-the-rules-for-local-and-global-variables-in-python" id="id10">Python中的局部变量和全局变量有哪些规则？</a></p></li>
+<li><p><a class="reference internal" href="#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result" id="id11">为什么在具有不同值的循环中定义的lambdas都返回相同的结果？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-share-global-variables-across-modules" id="id12">如何跨模块共享全局变量？</a></p></li>
+<li><p><a class="reference internal" href="#what-are-the-best-practices-for-using-import-in-a-module" id="id13">导入模块的“最佳实践”是什么？</a></p></li>
+<li><p><a class="reference internal" href="#why-are-default-values-shared-between-objects" id="id14">为什么对象之间共享默认值？</a></p></li>
+<li><p><a class="reference internal" href="#how-can-i-pass-optional-or-keyword-parameters-from-one-function-to-another" id="id15">如何将可选参数或关键字参数从一个函数传递到另一个函数？</a></p></li>
+<li><p><a class="reference internal" href="#what-is-the-difference-between-arguments-and-parameters" id="id16">形参和实参之间有什么区别？</a></p></li>
+<li><p><a class="reference internal" href="#why-did-changing-list-y-also-change-list-x" id="id17">为什么更改列表'y'也会更改列表'x'？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-write-a-function-with-output-parameters-call-by-reference" id="id18">如何编写带输出参数的函数（通过引用调用）？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-you-make-a-higher-order-function-in-python" id="id19">如何在Python中创建高阶函数？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-copy-an-object-in-python" id="id20">如何在Python中复制对象？</a></p></li>
+<li><p><a class="reference internal" href="#how-can-i-find-the-methods-or-attributes-of-an-object" id="id21">如何找到对象的方法或属性？</a></p></li>
+<li><p><a class="reference internal" href="#how-can-my-code-discover-the-name-of-an-object" id="id22">我的代码如何才能发现对象的名称？</a></p></li>
+<li><p><a class="reference internal" href="#what-s-up-with-the-comma-operator-s-precedence" id="id23">逗号运算符的优先级是什么？</a></p></li>
+<li><p><a class="reference internal" href="#is-there-an-equivalent-of-c-s-ternary-operator" id="id24">Is there an equivalent of C's &quot;?:&quot; ternary operator?</a></p></li>
+<li><p><a class="reference internal" href="#is-it-possible-to-write-obfuscated-one-liners-in-python" id="id25">Is it possible to write obfuscated one-liners in Python?</a></p></li>
+<li><p><a class="reference internal" href="#what-does-the-slash-in-the-parameter-list-of-a-function-mean" id="id26">函数参数列表中的斜杠（/）是什么意思？</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#numbers-and-strings" id="id27">数字和字符串</a></p>
+<ul>
+<li><p><a class="reference internal" href="#how-do-i-specify-hexadecimal-and-octal-integers" id="id28">如何指定十六进制和八进制整数？</a></p></li>
+<li><p><a class="reference internal" href="#why-does-22-10-return-3" id="id29">为什么-22 // 10返回-3？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-convert-a-string-to-a-number" id="id30">如何将字符串转换为数字？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-convert-a-number-to-a-string" id="id31">如何将数字转换为字符串？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-modify-a-string-in-place" id="id32">如何修改字符串？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-use-strings-to-call-functions-methods" id="id33">如何使用字符串调用函数/方法？</a></p></li>
+<li><p><a class="reference internal" href="#is-there-an-equivalent-to-perl-s-chomp-for-removing-trailing-newlines-from-strings" id="id34">是否有与Perl的chomp()等效的方法，用于从字符串中删除尾随换行符？</a></p></li>
+<li><p><a class="reference internal" href="#is-there-a-scanf-or-sscanf-equivalent" id="id35">Is there a scanf() or sscanf() equivalent?</a></p></li>
+<li><p><a class="reference internal" href="#what-does-unicodedecodeerror-or-unicodeencodeerror-error-mean" id="id36">'UnicodeDecodeError' 或 'UnicodeEncodeError' 错误是什么意思？</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#performance" id="id37">性能</a></p>
+<ul>
+<li><p><a class="reference internal" href="#my-program-is-too-slow-how-do-i-speed-it-up" id="id38">我的程序太慢了。该如何加快速度？</a></p></li>
+<li><p><a class="reference internal" href="#what-is-the-most-efficient-way-to-concatenate-many-strings-together" id="id39">将多个字符串连接在一起的最有效方法是什么？</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#sequences-tuples-lists" id="id40">序列（元组/列表）</a></p>
+<ul>
+<li><p><a class="reference internal" href="#how-do-i-convert-between-tuples-and-lists" id="id41">如何在元组和列表之间进行转换？</a></p></li>
+<li><p><a class="reference internal" href="#what-s-a-negative-index" id="id42">什么是负数序号？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-iterate-over-a-sequence-in-reverse-order" id="id43">如何以相反的顺序迭代序列？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-you-remove-duplicates-from-a-list" id="id44">如何从列表中删除重复项？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-you-make-an-array-in-python" id="id45">你如何在Python中创建一个数组？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-create-a-multidimensional-list" id="id46">如何创建多维列表？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-apply-a-method-to-a-sequence-of-objects" id="id47">如何将方法应用于一系列对象？</a></p></li>
+<li><p><a class="reference internal" href="#why-does-a-tuple-i-item-raise-an-exception-when-the-addition-works" id="id48">为什么在添加 _tuple[i]+=[‘item’] 时引发异常？</a></p></li>
+<li><p><a class="reference internal" href="#i-want-to-do-a-complicated-sort-can-you-do-a-schwartzian-transform-in-python" id="id49">我想做一个复杂的排序：你能用Python做一个Schwartzian变换吗？</a></p></li>
+<li><p><a class="reference internal" href="#how-can-i-sort-one-list-by-values-from-another-list" id="id50">如何按其他列表中的值对一个列表进行排序？</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#objects" id="id51">对象</a></p>
+<ul>
+<li><p><a class="reference internal" href="#what-is-a-class" id="id52">什么是类？</a></p></li>
+<li><p><a class="reference internal" href="#what-is-a-method" id="id53">什么是方法？</a></p></li>
+<li><p><a class="reference internal" href="#what-is-self" id="id54">什么是 self ？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-check-if-an-object-is-an-instance-of-a-given-class-or-of-a-subclass-of-it" id="id55">如何检查对象是否是给定类或其子类的实例？</a></p></li>
+<li><p><a class="reference internal" href="#what-is-delegation" id="id56">什么是代理？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-call-a-method-defined-in-a-base-class-from-a-derived-class-that-overrides-it" id="id57">如何从覆盖基类的派生类调用基类中定义的方法?</a></p></li>
+<li><p><a class="reference internal" href="#how-can-i-organize-my-code-to-make-it-easier-to-change-the-base-class" id="id58">如何组织代码以便更改基类？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-create-static-class-data-and-static-class-methods" id="id59">如何创建静态类数据和静态类方法？</a></p></li>
+<li><p><a class="reference internal" href="#how-can-i-overload-constructors-or-methods-in-python" id="id60">如何在Python中重载构造函数（或方法）？</a></p></li>
+<li><p><a class="reference internal" href="#i-try-to-use-spam-and-i-get-an-error-about-someclassname-spam" id="id61">我尝试使用 __spam ，但是得到一个关于 _SomeClassName__spam 的错误信息。</a></p></li>
+<li><p><a class="reference internal" href="#my-class-defines-del-but-it-is-not-called-when-i-delete-the-object" id="id62">我的类定义了 __del__ 但是在删除对象时没有调用它。</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-get-a-list-of-all-instances-of-a-given-class" id="id63">如何获取给定类的所有实例的列表？</a></p></li>
+<li><p><a class="reference internal" href="#why-does-the-result-of-id-appear-to-be-not-unique" id="id64">为什么 <code class="docutils literal notranslate"><span class="pre">id()</span></code> 的结果看起来不是唯一的？</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#modules" id="id65">模块</a></p>
+<ul>
+<li><p><a class="reference internal" href="#how-do-i-create-a-pyc-file" id="id66">如何创建 .pyc 文件？</a></p></li>
+<li><p><a class="reference internal" href="#how-do-i-find-the-current-module-name" id="id67">如何找到当前模块名称？</a></p></li>
+<li><p><a class="reference internal" href="#how-can-i-have-modules-that-mutually-import-each-other" id="id68">如何让模块相互导入？</a></p></li>
+<li><p><a class="reference internal" href="#import-x-y-z-returns-module-x-how-do-i-get-z" id="id69">__import__('x.y.z') 返回 &lt;module 'x'&gt;; 如何获取z?</a></p></li>
+<li><p><a class="reference internal" href="#when-i-edit-an-imported-module-and-reimport-it-the-changes-don-t-show-up-why-does-this-happen" id="id70">当我编辑了导入过的模块并重新导入它时，这些变化没有显示出来。为什么会这样？</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="general-questions">
+<h2><a class="toc-backref" href="#id3">一般问题</a><a class="headerlink" href="#general-questions" title="永久链接至标题">¶</a></h2>
+<div class="section" id="is-there-a-source-code-level-debugger-with-breakpoints-single-stepping-etc">
+<h3><a class="toc-backref" href="#id4">Python 有没有提供断点与单步调试等功能的，源码层次的调试器？</a><a class="headerlink" href="#is-there-a-source-code-level-debugger-with-breakpoints-single-stepping-etc" title="永久链接至标题">¶</a></h3>
+<p>有的。</p>
+<p>Several debuggers for Python are described below, and the built-in function
+<a class="reference internal" href="../library/functions.html#breakpoint" title="breakpoint"><code class="xref py py-func docutils literal notranslate"><span class="pre">breakpoint()</span></code></a> allows you to drop into any of them.</p>
+<p>pdb 模块是一个简单但是够用的控制台模式 Python 调试器。 它是标准 Python 库的一部分，并且 <a class="reference internal" href="../library/pdb.html#module-pdb" title="pdb: The Python debugger for interactive interpreters."><code class="xref py py-mod docutils literal notranslate"><span class="pre">已收录于库参考手册</span></code></a>。 你也可以通过使用 pdb 代码作为样例来编写你自己的调试器。</p>
+<p>作为标准 Python 发行版附带组件的 IDLE 交互式环境（通常位于 Tools/scripts/idle）中包含一个图形化的调试器。</p>
+<p>PythonWin 是一个包含有基于 pdb 的 GUI 调试器的 Python IDE。 Pythonwin 调试器会为断点加上颜色，并具有许多很棒的特性，例如也可以非 Pythonwin 程序。 Pythonwin 是 <a class="reference external" href="https://sourceforge.net/projects/pywin32/">Python for Windows Extensions</a> 项目的一部分，也是 ActivePython 发行版的一部分（参见 <a class="reference external" href="https://www.activestate.com/activepython">https://www.activestate.com/activepython</a>）。</p>
+<p><a class="reference external" href="http://boa-constructor.sourceforge.net/">Boa Constructor</a> 是一个使用wxWidgets的IDE和GUI构建器。它提供可视化框架创建和操作，对象检查器，源对象浏览器上的许多视图，继承层次结构，doc字符串生成的html文档，高级调试器，集成帮助和Zope支持。</p>
+<p><a class="reference external" href="http://eric-ide.python-projects.org/">Eric</a> 是一个基于PyQt和Scintilla编辑组件构建的IDE。</p>
+<p>Pydb是标准Python调试器pdb的一个版本，经过修改后可与DDD（数据显示调试器）一起使用，DDD是一种流行的图形化调试器前端。 Pydb可以在 <a class="reference external" href="http://bashdb.sourceforge.net/pydb/">http://bashdb.sourceforge.net/pydb/</a> 找到，DDD可以在 <a class="reference external" href="https://www.gnu.org/software/ddd">https://www.gnu.org/software/ddd</a> 找到。</p>
+<p>有许多商业Python IDE包括图形调试器。他们包括：</p>
+<ul class="simple">
+<li><p>Wing IDE (<a class="reference external" href="https://wingware.com/">https://wingware.com/</a>)</p></li>
+<li><p>Komodo IDE (<a class="reference external" href="https://komodoide.com/">https://komodoide.com/</a>)</p></li>
+<li><p>PyCharm (<a class="reference external" href="https://www.jetbrains.com/pycharm/">https://www.jetbrains.com/pycharm/</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="is-there-a-tool-to-help-find-bugs-or-perform-static-analysis">
+<h3><a class="toc-backref" href="#id5">有没有工具来帮助找寻漏洞或进行静态分析？</a><a class="headerlink" href="#is-there-a-tool-to-help-find-bugs-or-perform-static-analysis" title="永久链接至标题">¶</a></h3>
+<p>有的。</p>
+<p>PyChecker 是一个寻找Python代码漏洞以及对代码复杂性和风格给出警告的工具。你可以从这里获得PyChecker: <a class="reference external" href="http://pychecker.sourceforge.net/">http://pychecker.sourceforge.net/</a> 。</p>
+<p><a class="reference external" href="https://www.pylint.org/">Pylint</a> 是另一个检查模块是否满足编码标准的工具，也可以编写插件来添加自定义功能。除了PyChecker 执行的错误检查之外， Pylint 还提供了一些额外的功能，例如检查行长度，变量名称是否根据您的编码标准格式良好，声明的接口是否完全实现等等。 <a class="reference external" href="https://docs.pylint.org/">https://docs.pylint.org/</a> 提供了Pylint功能的完整列表。</p>
+<p>静态类型检查器，例如 <a class="reference external" href="http://mypy-lang.org/">Mypy</a> 、 <a class="reference external" href="https://pyre-check.org/">Pyre</a> 和 <a class="reference external" href="https://github.com/google/pytype">Pytype</a> 可以检查Python源代码中的类型提示。</p>
+</div>
+<div class="section" id="how-can-i-create-a-stand-alone-binary-from-a-python-script">
+<h3><a class="toc-backref" href="#id6">我如何能够通过一个 Python 脚本创建一个独立运行的二进制文件？</a><a class="headerlink" href="#how-can-i-create-a-stand-alone-binary-from-a-python-script" title="永久链接至标题">¶</a></h3>
+<p>如果你想要的只是一个独立的程序，用户可以下载和运行而不必先安装Python发行版，你就不需要将Python编译成C代码。有许多工具可以确定程序所需的模块集，并将这些模块与Python二进制文件绑定在一起以生成单个可执行文件。</p>
+<p>一种是使用冻结工具，它包含在Python源代码树 <code class="docutils literal notranslate"><span class="pre">Tools/freeze</span></code> 中。它将Python字节代码转换为C数组；一个C编译器，你可以将所有模块嵌入到一个新程序中，然后将其与标准Python模块链接。</p>
+<p>它的工作原理是递归扫描源代码以获取import语句（两种形式），并在标准Python路径和源目录（用于内置模块）中查找模块。 然后，它将用Python编写的模块的字节码转换为C代码（可以使用编组模块转换为代码对象的数组初始化器），并创建一个定制的配置文件，该文件仅包含程序中实际使用的内置模块。 然后，它编译生成的C代码并将其与Python解释器的其余部分链接，以形成一个独立的二进制文件，其行为与你的脚本完全相同。</p>
+<p>显然， freeze 需要一个C编译器。有几个其他实用工具不需要。 一个是Thomas Heller的py2exe（仅限Windows）</p>
+<blockquote>
+<div><p><a class="reference external" href="http://www.py2exe.org/">http://www.py2exe.org/</a></p>
+</div></blockquote>
+<p>另一个工具是 Anthony Tuininga 的 <a class="reference external" href="https://anthony-tuininga.github.io/cx_Freeze/">cx_Freeze</a>。</p>
+</div>
+<div class="section" id="are-there-coding-standards-or-a-style-guide-for-python-programs">
+<h3><a class="toc-backref" href="#id7">是否有编程标准或Python程序的样式指南？</a><a class="headerlink" href="#are-there-coding-standards-or-a-style-guide-for-python-programs" title="永久链接至标题">¶</a></h3>
+<p>是。标准库模块所要求的编码样式文档为 <span class="target" id="index-6"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0008"><strong>PEP 8</strong></a> 。</p>
+</div>
+</div>
+<div class="section" id="core-language">
+<h2><a class="toc-backref" href="#id8">核心语言</a><a class="headerlink" href="#core-language" title="永久链接至标题">¶</a></h2>
+<div class="section" id="why-am-i-getting-an-unboundlocalerror-when-the-variable-has-a-value">
+<h3><a class="toc-backref" href="#id9">当变量有值时，为什么会出现UnboundLocalError？</a><a class="headerlink" href="#why-am-i-getting-an-unboundlocalerror-when-the-variable-has-a-value" title="永久链接至标题">¶</a></h3>
+<p>通过在函数体中的某处添加赋值语句，导致以前正常工作的代码被修改而得到 UnboundLocalError 会令人感到意外。</p>
+<p>以下代码：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">bar</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bar</span><span class="p">()</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<p>正常工作，但是以下代码</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>会得到一个 UnboundLocalError ：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">UnboundLocalError</span>: <span class="n">local variable &#39;x&#39; referenced before assignment</span>
+</pre></div>
+</div>
+<p>这是因为当你对作用域中的变量进行赋值时，该变量将成为该作用域的局部变量，并在外部作用域中隐藏任何类似命名的变量。由于foo中的最后一个语句为 <code class="docutils literal notranslate"><span class="pre">x</span></code> 分配了一个新值，编译器会将其识别为局部变量。因此，当先前的 <code class="docutils literal notranslate"><span class="pre">print(x)</span></code> 尝试打印未初始化的局部变量时会导致错误。</p>
+<p>在上面的示例中，你可以通过将其声明为全局来访问外部作用域变量：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">foobar</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">global</span> <span class="n">x</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foobar</span><span class="p">()</span>
+<span class="go">10</span>
+</pre></div>
+</div>
+<p>这个显式声明是必需的，以便提醒你（与类和实例变量的表面类似情况不同），你实际上是在外部作用域中修改变量的值</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="go">11</span>
+</pre></div>
+</div>
+<p>你可以使用 <a class="reference internal" href="../reference/simple_stmts.html#nonlocal"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">nonlocal</span></code></a> 关键字在嵌套作用域中执行类似的操作：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+<span class="gp">... </span>   <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">... </span>   <span class="k">def</span> <span class="nf">bar</span><span class="p">():</span>
+<span class="gp">... </span>       <span class="k">nonlocal</span> <span class="n">x</span>
+<span class="gp">... </span>       <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">... </span>       <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">... </span>   <span class="n">bar</span><span class="p">()</span>
+<span class="gp">... </span>   <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span><span class="p">()</span>
+<span class="go">10</span>
+<span class="go">11</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="what-are-the-rules-for-local-and-global-variables-in-python">
+<h3><a class="toc-backref" href="#id10">Python中的局部变量和全局变量有哪些规则？</a><a class="headerlink" href="#what-are-the-rules-for-local-and-global-variables-in-python" title="永久链接至标题">¶</a></h3>
+<p>在Python中，仅在函数内引用的变量是隐式全局变量。如果在函数体内的任何位置为变量赋值，则除非明确声明为全局，否则将其视为局部值。</p>
+<p>虽然起初有点令人惊讶，但片刻考虑就可以解释。一方面，要求 <a class="reference internal" href="../reference/simple_stmts.html#global"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">global</span></code></a> 表示已分配的变量可以防止意外的副作用。另一方面，如果所有全局引用都需要 <code class="docutils literal notranslate"><span class="pre">global</span></code> ，那么你一直都在使用 <code class="docutils literal notranslate"><span class="pre">global</span></code> 。你必须将对内置函数或导入模块的组件的每个引用声明为全局。这种杂乱会破坏 <code class="docutils literal notranslate"><span class="pre">global</span></code> 声明用于识别副作用的有用性。</p>
+</div>
+<div class="section" id="why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result">
+<h3><a class="toc-backref" href="#id11">为什么在具有不同值的循环中定义的lambdas都返回相同的结果？</a><a class="headerlink" href="#why-do-lambdas-defined-in-a-loop-with-different-values-all-return-the-same-result" title="永久链接至标题">¶</a></h3>
+<p>假设你使用for循环来定义几个不同的 lambda （甚至是普通函数），例如：:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">squares</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这给你一个包含5个lambdas的列表，它们计算 <code class="docutils literal notranslate"><span class="pre">x**2</span></code> 。你可能会期望，当它们被调用时，它们将分别返回 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 、 <code class="docutils literal notranslate"><span class="pre">4</span></code> 、 <code class="docutils literal notranslate"><span class="pre">9</span></code> 和 <code class="docutils literal notranslate"><span class="pre">16</span></code> 。但是，当你真正尝试时，你会看到它们都返回 <code class="docutils literal notranslate"><span class="pre">16</span></code> 。:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="mi">2</span><span class="p">]()</span>
+<span class="go">16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="mi">4</span><span class="p">]()</span>
+<span class="go">16</span>
+</pre></div>
+</div>
+<p>发生这种情况是因为 <code class="docutils literal notranslate"><span class="pre">x</span></code> 不是lambdas的内部变量，而是在外部作用域中定义，并且在调用lambda时访问它 - 而不是在定义它时。 在循环结束时， <code class="docutils literal notranslate"><span class="pre">x</span></code> 的值是 <code class="docutils literal notranslate"><span class="pre">4</span></code> ，所以所有的函数现在返回 <code class="docutils literal notranslate"><span class="pre">4**2</span></code> ，即 <code class="docutils literal notranslate"><span class="pre">16</span></code> 。你还可以通过更改 <code class="docutils literal notranslate"><span class="pre">x</span></code> 的值来验证这一点，并查看lambdas的结果如何变化:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="mi">2</span><span class="p">]()</span>
+<span class="go">64</span>
+</pre></div>
+</div>
+<p>为了避免这种情况，你需要将值保存在lambdas的局部变量中，这样它们就不依赖于全局``x`` 的值</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">squares</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="o">=</span><span class="n">x</span><span class="p">:</span> <span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这里， <code class="docutils literal notranslate"><span class="pre">n=x</span></code> 在lambda本地创建一个新的变量 <code class="docutils literal notranslate"><span class="pre">n</span></code> ，并在定义lambda时计算，使它具有与 <code class="docutils literal notranslate"><span class="pre">x</span></code> 在循环中该点相同的值。这意味着 <code class="docutils literal notranslate"><span class="pre">n</span></code> 的值在第一个lambda中为 <code class="docutils literal notranslate"><span class="pre">0</span></code> ，在第二个lambda中为 <code class="docutils literal notranslate"><span class="pre">1</span></code> ，在第三个中为 <code class="docutils literal notranslate"><span class="pre">2</span></code> ，依此类推。因此每个lambda现在将返回正确的结果:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="mi">2</span><span class="p">]()</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="mi">4</span><span class="p">]()</span>
+<span class="go">16</span>
+</pre></div>
+</div>
+<p>请注意，这种行为并不是lambda所特有的，但也适用于常规函数。</p>
+</div>
+<div class="section" id="how-do-i-share-global-variables-across-modules">
+<h3><a class="toc-backref" href="#id12">如何跨模块共享全局变量？</a><a class="headerlink" href="#how-do-i-share-global-variables-across-modules" title="永久链接至标题">¶</a></h3>
+<p>在单个程序中跨模块共享信息的规范方法是创建一个特殊模块（通常称为config或cfg）。只需在应用程序的所有模块中导入配置模块；然后该模块可用作全局名称。因为每个模块只有一个实例，所以对模块对象所做的任何更改都会在任何地方反映出来。 例如：</p>
+<p>config.py:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Default value of the &#39;x&#39; configuration setting</span>
+</pre></div>
+</div>
+<p>mod.py:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">config</span>
+<span class="n">config</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>main.py:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">config</span>
+<span class="kn">import</span> <span class="nn">mod</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>请注意，出于同样的原因，使用模块也是实现Singleton设计模式的基础。</p>
+</div>
+<div class="section" id="what-are-the-best-practices-for-using-import-in-a-module">
+<h3><a class="toc-backref" href="#id13">导入模块的“最佳实践”是什么？</a><a class="headerlink" href="#what-are-the-best-practices-for-using-import-in-a-module" title="永久链接至标题">¶</a></h3>
+<p>通常，不要使用 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">modulename</span> <span class="pre">import</span> <span class="pre">*</span></code> 。这样做会使导入器的命名空间变得混乱，并且使得连接器更难以检测未定义的名称。</p>
+<p>在文件的顶部导入模块。这样做可以清楚地了解代码所需的其他模块，并避免了模块名称是否在范围内的问题。每行导入一个模块可以轻松添加和删除导入的模块，但每行导入多个模块会占用更少的屏幕空间。</p>
+<p>如果按以下顺序导入模块，这是一种很好的做法：</p>
+<ol class="arabic simple">
+<li><p>标准库模块 -- 例如： <code class="docutils literal notranslate"><span class="pre">sys</span></code>, <code class="docutils literal notranslate"><span class="pre">os</span></code>, <code class="docutils literal notranslate"><span class="pre">getopt</span></code>, <code class="docutils literal notranslate"><span class="pre">re</span></code></p></li>
+<li><p>第三方库模块（安装在Python的site-packages目录中的任何内容） --  例如mx.DateTime，ZODB，PIL.Image等</p></li>
+<li><p>本地开发的模块</p></li>
+</ol>
+<p>有时需要将模块导入语句移动到函数或类里面，以避免循环导入问题。Gordon McMillan 说：</p>
+<blockquote>
+<div><p>当两个模块都使用  &quot;import &lt;module&gt;&quot; 的导入形式时，循环导入就可以了。但是当第二个模块想从第一个模块中获取一个名称(“来自模块导入名称”)并且导入位于顶层时，就会出错。这是因为第一个模块中的名称还不可用，因为第一个模块正在忙着导入第二个模块。</p>
+</div></blockquote>
+<p>在这种情况下，如果第二个模块仅用于一个函数，则可以轻松地将模块导入语句移动到该函数中。调用导入时，第一个模块将完成初始化，第二个模块可以进行导入。</p>
+<p>如果某些模块是特定于平台的，则可能还需要将模块导入语句移出顶级代码。在这种情况下，甚至可能无法导入文件顶部的所有模块。在这种情况下，在相应的特定于平台的代码中导入正确的模块是一个很好的选择。</p>
+<p>只有当需要解决诸如避免循环导入或试图减少模块初始化时间的问题时，才可以将导入移动到本地范围，例如在函数定义中。如果根据程序的执行方式，许多导入是不必要的，这种技术尤其有用。如果仅在某个函数中使用模块，您还可能希望将导入移到该函数中。请注意，第一次加载模块可能会因为模块的一次初始化而代价高昂，但多次加载模块实际上是免费的，只需进行几次字典查找。即使模块名称超出了作用域，模块也可能在 <a class="reference internal" href="../library/sys.html#sys.modules" title="sys.modules"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.modules</span></code></a> 中可用。</p>
+</div>
+<div class="section" id="why-are-default-values-shared-between-objects">
+<h3><a class="toc-backref" href="#id14">为什么对象之间共享默认值？</a><a class="headerlink" href="#why-are-default-values-shared-between-objects" title="永久链接至标题">¶</a></h3>
+<p>这种类型的缺陷通常会惹恼新手程序员。考虑这个函数</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">mydict</span><span class="o">=</span><span class="p">{}):</span>  <span class="c1"># Danger: shared reference to one dict for all calls</span>
+    <span class="o">...</span> <span class="n">compute</span> <span class="n">something</span> <span class="o">...</span>
+    <span class="n">mydict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">mydict</span>
+</pre></div>
+</div>
+<p>第一次调用此函数时，<code class="docutils literal notranslate"><span class="pre">mydict</span></code> 包含一个项目。第二次，<code class="docutils literal notranslate"><span class="pre">mydict``包含两个项目，因为当</span> <span class="pre">``foo()</span></code> 开始执行时， <code class="docutils literal notranslate"><span class="pre">mydict</span></code> 已有一个项目。</p>
+<p>It is often expected that a function call creates new objects for default
+values. This is not what happens. Default values are created exactly once, when
+the function is defined.  If that object is changed, like the dictionary in this
+example, subsequent calls to the function will refer to this changed object.</p>
+<p>By definition, immutable objects such as numbers, strings, tuples, and <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+are safe from change. Changes to mutable objects such as dictionaries, lists,
+and class instances can lead to confusion.</p>
+<p>Because of this feature, it is good programming practice to not use mutable
+objects as default values.  Instead, use <code class="docutils literal notranslate"><span class="pre">None</span></code> as the default value and
+inside the function, check if the parameter is <code class="docutils literal notranslate"><span class="pre">None</span></code> and create a new
+list/dictionary/whatever if it is.  For example, don't write:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">mydict</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>但是:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">mydict</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">mydict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mydict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># create a new dict for local namespace</span>
+</pre></div>
+</div>
+<p>This feature can be useful.  When you have a function that's time-consuming to
+compute, a common technique is to cache the parameters and the resulting value
+of each call to the function, and return the cached value if the same value is
+requested again.  This is called &quot;memoizing&quot;, and can be implemented like this:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Callers can only provide two parameters and optionally pass _cache by keyword</span>
+<span class="k">def</span> <span class="nf">expensive</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">_cache</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">_cache</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_cache</span><span class="p">[(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)]</span>
+
+    <span class="c1"># Calculate the value</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="o">...</span> <span class="n">expensive</span> <span class="n">computation</span> <span class="o">...</span>
+    <span class="n">_cache</span><span class="p">[(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)]</span> <span class="o">=</span> <span class="n">result</span>           <span class="c1"># Store result in the cache</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>You could use a global variable containing a dictionary instead of the default
+value; it's a matter of taste.</p>
+</div>
+<div class="section" id="how-can-i-pass-optional-or-keyword-parameters-from-one-function-to-another">
+<h3><a class="toc-backref" href="#id15">如何将可选参数或关键字参数从一个函数传递到另一个函数？</a><a class="headerlink" href="#how-can-i-pass-optional-or-keyword-parameters-from-one-function-to-another" title="永久链接至标题">¶</a></h3>
+<p>使用函数参数列表中的 <code class="docutils literal notranslate"><span class="pre">*</span></code> 和 <code class="docutils literal notranslate"><span class="pre">**</span></code> 说明符收集参数;这会将位置参数作为元组，将关键字参数作为字典。然后，您可以使用 <code class="docutils literal notranslate"><span class="pre">*</span></code> 和 <code class="docutils literal notranslate"><span class="pre">**</span></code> 调用另一个函数时传递这些参数：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;14.3c&#39;</span>
+    <span class="o">...</span>
+    <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="what-is-the-difference-between-arguments-and-parameters">
+<span id="faq-argument-vs-parameter"></span><span id="index-1"></span><h3><a class="toc-backref" href="#id16">形参和实参之间有什么区别？</a><a class="headerlink" href="#what-is-the-difference-between-arguments-and-parameters" title="永久链接至标题">¶</a></h3>
+<p><a class="reference internal" href="../glossary.html#term-parameter"><span class="xref std std-term">Parameters</span></a> are defined by the names that appear in a
+function definition, whereas <a class="reference internal" href="../glossary.html#term-argument"><span class="xref std std-term">arguments</span></a> are the values
+actually passed to a function when calling it.  Parameters define what types of
+arguments a function can accept.  For example, given the function definition:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p><em>foo</em>, <em>bar</em> 和 <em>kwargs</em> 是 <code class="docutils literal notranslate"><span class="pre">func</span></code> 的参数。但是，在调用 <code class="docutils literal notranslate"><span class="pre">func</span></code> 时，例如：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">func</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="n">bar</span><span class="o">=</span><span class="mi">314</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">somevar</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>the values <code class="docutils literal notranslate"><span class="pre">42</span></code>, <code class="docutils literal notranslate"><span class="pre">314</span></code>, and <code class="docutils literal notranslate"><span class="pre">somevar</span></code> are arguments.</p>
+</div>
+<div class="section" id="why-did-changing-list-y-also-change-list-x">
+<h3><a class="toc-backref" href="#id17">为什么更改列表'y'也会更改列表'x'？</a><a class="headerlink" href="#why-did-changing-list-y-also-change-list-x" title="永久链接至标题">¶</a></h3>
+<p>如果你编写的代码就像下面一样：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
+<span class="go">[10]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">[10]</span>
+</pre></div>
+</div>
+<p>你可能想知道为什么追加一个元素也改变了x。</p>
+<p>产生这种结果有两个因素：</p>
+<ol class="arabic simple">
+<li><p>Variables are simply names that refer to objects.  Doing <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">x</span></code> doesn't
+create a copy of the list -- it creates a new variable <code class="docutils literal notranslate"><span class="pre">y</span></code> that refers to
+the same object <code class="docutils literal notranslate"><span class="pre">x</span></code> refers to.  This means that there is only one object
+(the list), and both <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> refer to it.</p></li>
+<li><p>Lists are <a class="reference internal" href="../glossary.html#term-mutable"><span class="xref std std-term">mutable</span></a>, which means that you can change their content.</p></li>
+</ol>
+<p>After the call to <code class="xref py py-meth docutils literal notranslate"><span class="pre">append()</span></code>, the content of the mutable object has
+changed from <code class="docutils literal notranslate"><span class="pre">[]</span></code> to <code class="docutils literal notranslate"><span class="pre">[10]</span></code>.  Since both the variables refer to the same
+object, using either name accesses the modified value <code class="docutils literal notranslate"><span class="pre">[10]</span></code>.</p>
+<p>如果我们改为将不可变对象分配给 <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># ints are immutable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># 5 can&#39;t be mutated, we are creating a new object here</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p>we can see that in this case <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> are not equal anymore.  This is
+because integers are <a class="reference internal" href="../glossary.html#term-immutable"><span class="xref std std-term">immutable</span></a>, and when we do <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">1</span></code> we are not
+mutating the int <code class="docutils literal notranslate"><span class="pre">5</span></code> by incrementing its value; instead, we are creating a
+new object (the int <code class="docutils literal notranslate"><span class="pre">6</span></code>) and assigning it to <code class="docutils literal notranslate"><span class="pre">x</span></code> (that is, changing which
+object <code class="docutils literal notranslate"><span class="pre">x</span></code> refers to).  After this assignment we have two objects (the ints
+<code class="docutils literal notranslate"><span class="pre">6</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code>) and two variables that refer to them (<code class="docutils literal notranslate"><span class="pre">x</span></code> now refers to
+<code class="docutils literal notranslate"><span class="pre">6</span></code> but <code class="docutils literal notranslate"><span class="pre">y</span></code> still refers to <code class="docutils literal notranslate"><span class="pre">5</span></code>).</p>
+<p>Some operations (for example <code class="docutils literal notranslate"><span class="pre">y.append(10)</span></code> and <code class="docutils literal notranslate"><span class="pre">y.sort()</span></code>) mutate the
+object, whereas superficially similar operations (for example <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">[10]</span></code>
+and <code class="docutils literal notranslate"><span class="pre">sorted(y)</span></code>) create a new object.  In general in Python (and in all cases
+in the standard library) a method that mutates an object will return <code class="docutils literal notranslate"><span class="pre">None</span></code>
+to help avoid getting the two types of operations confused.  So if you
+mistakenly write <code class="docutils literal notranslate"><span class="pre">y.sort()</span></code> thinking it will give you a sorted copy of <code class="docutils literal notranslate"><span class="pre">y</span></code>,
+you'll instead end up with <code class="docutils literal notranslate"><span class="pre">None</span></code>, which will likely cause your program to
+generate an easily diagnosed error.</p>
+<p>However, there is one class of operations where the same operation sometimes
+has different behaviors with different types:  the augmented assignment
+operators.  For example, <code class="docutils literal notranslate"><span class="pre">+=</span></code> mutates lists but not tuples or ints (<code class="docutils literal notranslate"><span class="pre">a_list</span>
+<span class="pre">+=</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">a_list.extend([1,</span> <span class="pre">2,</span> <span class="pre">3])</span></code> and mutates
+<code class="docutils literal notranslate"><span class="pre">a_list</span></code>, whereas <code class="docutils literal notranslate"><span class="pre">some_tuple</span> <span class="pre">+=</span> <span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></code> and <code class="docutils literal notranslate"><span class="pre">some_int</span> <span class="pre">+=</span> <span class="pre">1</span></code> create
+new objects).</p>
+<p>换而言之：</p>
+<ul class="simple">
+<li><p>If we have a mutable object (<a class="reference internal" href="../library/stdtypes.html#list" title="list"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>, <a class="reference internal" href="../library/stdtypes.html#dict" title="dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, <a class="reference internal" href="../library/stdtypes.html#set" title="set"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>,
+etc.), we can use some specific operations to mutate it and all the variables
+that refer to it will see the change.</p></li>
+<li><p>If we have an immutable object (<a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference internal" href="../library/stdtypes.html#tuple" title="tuple"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>,
+etc.), all the variables that refer to it will always see the same value,
+but operations that transform that value into a new value always return a new
+object.</p></li>
+</ul>
+<p>If you want to know if two variables refer to the same object or not, you can
+use the <a class="reference internal" href="../reference/expressions.html#is"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">is</span></code></a> operator, or the built-in function <a class="reference internal" href="../library/functions.html#id" title="id"><code class="xref py py-func docutils literal notranslate"><span class="pre">id()</span></code></a>.</p>
+</div>
+<div class="section" id="how-do-i-write-a-function-with-output-parameters-call-by-reference">
+<h3><a class="toc-backref" href="#id18">如何编写带输出参数的函数（通过引用调用）？</a><a class="headerlink" href="#how-do-i-write-a-function-with-output-parameters-call-by-reference" title="永久链接至标题">¶</a></h3>
+<p>Remember that arguments are passed by assignment in Python.  Since assignment
+just creates references to objects, there's no alias between an argument name in
+the caller and callee, and so no call-by-reference per se.  You can achieve the
+desired effect in a number of ways.</p>
+<ol class="arabic">
+<li><p>By returning a tuple of the results:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;new-value&#39;</span>        <span class="c1"># a and b are local names</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span>              <span class="c1"># assigned to new objects</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>            <span class="c1"># return new values</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;old-value&#39;</span><span class="p">,</span> <span class="mi">99</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">func2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>                <span class="c1"># output: new-value 100</span>
+</pre></div>
+</div>
+<p>This is almost always the clearest solution.</p>
+</li>
+<li><p>By using global variables.  This isn't thread-safe, and is not recommended.</p></li>
+<li><p>By passing a mutable (changeable in-place) object:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;new-value&#39;</span>     <span class="c1"># &#39;a&#39; references a mutable list</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>        <span class="c1"># changes a shared object</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;old-value&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">]</span>
+<span class="n">func1</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>    <span class="c1"># output: new-value 100</span>
+</pre></div>
+</div>
+</li>
+<li><p>By passing in a dictionary that gets mutated:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func3</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">args</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;new-value&#39;</span>     <span class="c1"># args is a mutable dictionary</span>
+    <span class="n">args</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>   <span class="c1"># change it in-place</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;old-value&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">99</span><span class="p">}</span>
+<span class="n">func3</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p>Or bundle up values in a class instance:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">callByRef</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">func4</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;new-value&#39;</span>        <span class="c1"># args is a mutable callByRef</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">b</span> <span class="o">+</span> <span class="mi">1</span>         <span class="c1"># change object in-place</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">callByRef</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="s1">&#39;old-value&#39;</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">99</span><span class="p">)</span>
+<span class="n">func4</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There's almost never a good reason to get this complicated.</p>
+</li>
+</ol>
+<p>Your best choice is to return a tuple containing the multiple results.</p>
+</div>
+<div class="section" id="how-do-you-make-a-higher-order-function-in-python">
+<h3><a class="toc-backref" href="#id19">如何在Python中创建高阶函数？</a><a class="headerlink" href="#how-do-you-make-a-higher-order-function-in-python" title="永久链接至标题">¶</a></h3>
+<p>You have two choices: you can use nested scopes or you can use callable objects.
+For example, suppose you wanted to define <code class="docutils literal notranslate"><span class="pre">linear(a,b)</span></code> which returns a
+function <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> that computes the value <code class="docutils literal notranslate"><span class="pre">a*x+b</span></code>.  Using nested scopes:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">result</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>Or using a callable object:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">linear</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+</pre></div>
+</div>
+<p>In both cases,</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">taxes</span> <span class="o">=</span> <span class="n">linear</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>gives a callable object where <code class="docutils literal notranslate"><span class="pre">taxes(10e6)</span> <span class="pre">==</span> <span class="pre">0.3</span> <span class="pre">*</span> <span class="pre">10e6</span> <span class="pre">+</span> <span class="pre">2</span></code>.</p>
+<p>The callable object approach has the disadvantage that it is a bit slower and
+results in slightly longer code.  However, note that a collection of callables
+can share their signature via inheritance:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">exponential</span><span class="p">(</span><span class="n">linear</span><span class="p">):</span>
+    <span class="c1"># __init__ inherited</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Object can encapsulate state for several methods:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">counter</span><span class="p">:</span>
+
+    <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">x</span>
+
+    <span class="k">def</span> <span class="nf">up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="n">count</span> <span class="o">=</span> <span class="n">counter</span><span class="p">()</span>
+<span class="n">inc</span><span class="p">,</span> <span class="n">dec</span><span class="p">,</span> <span class="n">reset</span> <span class="o">=</span> <span class="n">count</span><span class="o">.</span><span class="n">up</span><span class="p">,</span> <span class="n">count</span><span class="o">.</span><span class="n">down</span><span class="p">,</span> <span class="n">count</span><span class="o">.</span><span class="n">set</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">inc()</span></code>, <code class="docutils literal notranslate"><span class="pre">dec()</span></code> and <code class="docutils literal notranslate"><span class="pre">reset()</span></code> act like functions which share the
+same counting variable.</p>
+</div>
+<div class="section" id="how-do-i-copy-an-object-in-python">
+<h3><a class="toc-backref" href="#id20">如何在Python中复制对象？</a><a class="headerlink" href="#how-do-i-copy-an-object-in-python" title="永久链接至标题">¶</a></h3>
+<p>In general, try <a class="reference internal" href="../library/copy.html#copy.copy" title="copy.copy"><code class="xref py py-func docutils literal notranslate"><span class="pre">copy.copy()</span></code></a> or <a class="reference internal" href="../library/copy.html#copy.deepcopy" title="copy.deepcopy"><code class="xref py py-func docutils literal notranslate"><span class="pre">copy.deepcopy()</span></code></a> for the general case.
+Not all objects can be copied, but most can.</p>
+<p>Some objects can be copied more easily.  Dictionaries have a <a class="reference internal" href="../library/stdtypes.html#dict.copy" title="dict.copy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">copy()</span></code></a>
+method:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">newdict</span> <span class="o">=</span> <span class="n">olddict</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Sequences can be copied by slicing:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_l</span> <span class="o">=</span> <span class="n">l</span><span class="p">[:]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-can-i-find-the-methods-or-attributes-of-an-object">
+<h3><a class="toc-backref" href="#id21">如何找到对象的方法或属性？</a><a class="headerlink" href="#how-can-i-find-the-methods-or-attributes-of-an-object" title="永久链接至标题">¶</a></h3>
+<p>For an instance x of a user-defined class, <code class="docutils literal notranslate"><span class="pre">dir(x)</span></code> returns an alphabetized
+list of the names containing the instance attributes and methods and attributes
+defined by its class.</p>
+</div>
+<div class="section" id="how-can-my-code-discover-the-name-of-an-object">
+<h3><a class="toc-backref" href="#id22">我的代码如何才能发现对象的名称？</a><a class="headerlink" href="#how-can-my-code-discover-the-name-of-an-object" title="永久链接至标题">¶</a></h3>
+<p>Generally speaking, it can't, because objects don't really have names.
+Essentially, assignment always binds a name to a value; The same is true of
+<code class="docutils literal notranslate"><span class="pre">def</span></code> and <code class="docutils literal notranslate"><span class="pre">class</span></code> statements, but in that case the value is a
+callable. Consider the following code:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">B</span> <span class="o">=</span> <span class="n">A</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">B</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="go">&lt;__main__.A object at 0x16D07CC&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">&lt;__main__.A object at 0x16D07CC&gt;</span>
+</pre></div>
+</div>
+<p>Arguably the class has a name: even though it is bound to two names and invoked
+through the name B the created instance is still reported as an instance of
+class A.  However, it is impossible to say whether the instance's name is a or
+b, since both names are bound to the same value.</p>
+<p>Generally speaking it should not be necessary for your code to &quot;know the names&quot;
+of particular values. Unless you are deliberately writing introspective
+programs, this is usually an indication that a change of approach might be
+beneficial.</p>
+<p>In comp.lang.python, Fredrik Lundh once gave an excellent analogy in answer to
+this question:</p>
+<blockquote>
+<div><p>The same way as you get the name of that cat you found on your porch: the cat
+(object) itself cannot tell you its name, and it doesn't really care -- so
+the only way to find out what it's called is to ask all your neighbours
+(namespaces) if it's their cat (object)...</p>
+<p>....and don't be surprised if you'll find that it's known by many names, or
+no name at all!</p>
+</div></blockquote>
+</div>
+<div class="section" id="what-s-up-with-the-comma-operator-s-precedence">
+<h3><a class="toc-backref" href="#id23">逗号运算符的优先级是什么？</a><a class="headerlink" href="#what-s-up-with-the-comma-operator-s-precedence" title="永久链接至标题">¶</a></h3>
+<p>Comma is not an operator in Python.  Consider this session:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;a&quot;</span> <span class="ow">in</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span>
+<span class="go">(False, &#39;a&#39;)</span>
+</pre></div>
+</div>
+<p>Since the comma is not an operator, but a separator between expressions the
+above is evaluated as if you had entered:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s2">&quot;a&quot;</span> <span class="ow">in</span> <span class="s2">&quot;b&quot;</span><span class="p">),</span> <span class="s2">&quot;a&quot;</span>
+</pre></div>
+</div>
+<p>not:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;a&quot;</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The same is true of the various assignment operators (<code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">+=</span></code> etc).  They
+are not truly operators but syntactic delimiters in assignment statements.</p>
+</div>
+<div class="section" id="is-there-an-equivalent-of-c-s-ternary-operator">
+<h3><a class="toc-backref" href="#id24">Is there an equivalent of C's &quot;?:&quot; ternary operator?</a><a class="headerlink" href="#is-there-an-equivalent-of-c-s-ternary-operator" title="永久链接至标题">¶</a></h3>
+<p>Yes, there is. The syntax is as follows:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">on_true</span><span class="p">]</span> <span class="k">if</span> <span class="p">[</span><span class="n">expression</span><span class="p">]</span> <span class="k">else</span> <span class="p">[</span><span class="n">on_false</span><span class="p">]</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span>
+<span class="n">small</span> <span class="o">=</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="k">else</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>Before this syntax was introduced in Python 2.5, a common idiom was to use
+logical operators:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">expression</span><span class="p">]</span> <span class="ow">and</span> <span class="p">[</span><span class="n">on_true</span><span class="p">]</span> <span class="ow">or</span> <span class="p">[</span><span class="n">on_false</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>However, this idiom is unsafe, as it can give wrong results when <em>on_true</em>
+has a false boolean value.  Therefore, it is always better to use
+the <code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">if</span> <span class="pre">...</span> <span class="pre">else</span> <span class="pre">...</span></code> form.</p>
+</div>
+<div class="section" id="is-it-possible-to-write-obfuscated-one-liners-in-python">
+<h3><a class="toc-backref" href="#id25">Is it possible to write obfuscated one-liners in Python?</a><a class="headerlink" href="#is-it-possible-to-write-obfuscated-one-liners-in-python" title="永久链接至标题">¶</a></h3>
+<p>Yes.  Usually this is done by nesting <a class="reference internal" href="../reference/expressions.html#lambda"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">lambda</span></code></a> within
+<code class="xref std std-keyword docutils literal notranslate"><span class="pre">lambda</span></code>.  See the following three examples, due to Ulf Bartelt:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
+
+<span class="c1"># Primes &lt; 1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">*</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">!=</span><span class="mi">0</span><span class="p">,</span>
+<span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">%</span><span class="n">x</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))),</span><span class="mi">1</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1000</span><span class="p">)))))</span>
+
+<span class="c1"># First 10 Fibonacci numbers</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">:(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">f</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="p">))</span> <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span><span class="p">:</span>
+<span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))))</span>
+
+<span class="c1"># Mandelbrot set</span>
+<span class="nb">print</span><span class="p">((</span><span class="k">lambda</span> <span class="n">Ru</span><span class="p">,</span><span class="n">Ro</span><span class="p">,</span><span class="n">Iu</span><span class="p">,</span><span class="n">Io</span><span class="p">,</span><span class="n">IM</span><span class="p">,</span><span class="n">Sx</span><span class="p">,</span><span class="n">Sy</span><span class="p">:</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">,</span>
+<span class="n">Iu</span><span class="o">=</span><span class="n">Iu</span><span class="p">,</span><span class="n">Io</span><span class="o">=</span><span class="n">Io</span><span class="p">,</span><span class="n">Ru</span><span class="o">=</span><span class="n">Ru</span><span class="p">,</span><span class="n">Ro</span><span class="o">=</span><span class="n">Ro</span><span class="p">,</span><span class="n">Sy</span><span class="o">=</span><span class="n">Sy</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="k">lambda</span> <span class="n">yc</span><span class="p">,</span><span class="n">Iu</span><span class="o">=</span><span class="n">Iu</span><span class="p">,</span><span class="n">Io</span><span class="o">=</span><span class="n">Io</span><span class="p">,</span><span class="n">Ru</span><span class="o">=</span><span class="n">Ru</span><span class="p">,</span><span class="n">Ro</span><span class="o">=</span><span class="n">Ro</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="n">IM</span><span class="p">,</span>
+<span class="n">Sx</span><span class="o">=</span><span class="n">Sx</span><span class="p">,</span><span class="n">Sy</span><span class="o">=</span><span class="n">Sy</span><span class="p">:</span><span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">xc</span><span class="o">=</span><span class="n">Ru</span><span class="p">,</span><span class="n">yc</span><span class="o">=</span><span class="n">yc</span><span class="p">,</span><span class="n">Ru</span><span class="o">=</span><span class="n">Ru</span><span class="p">,</span><span class="n">Ro</span><span class="o">=</span><span class="n">Ro</span><span class="p">,</span>
+<span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">Sx</span><span class="o">=</span><span class="n">Sx</span><span class="p">,</span><span class="n">F</span><span class="o">=</span><span class="k">lambda</span> <span class="n">xc</span><span class="p">,</span><span class="n">yc</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="k">lambda</span> <span class="n">xc</span><span class="p">,</span><span class="n">yc</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">f</span><span class="p">:(</span><span class="n">k</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span><span class="ow">or</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="n">y</span>
+<span class="o">&gt;=</span><span class="mf">4.0</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="n">yc</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="o">+</span><span class="n">xc</span><span class="p">,</span><span class="mf">2.0</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">+</span><span class="n">yc</span><span class="p">,</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">f</span><span class="p">):</span><span class="n">f</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="n">yc</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">f</span><span class="p">):</span><span class="nb">chr</span><span class="p">(</span>
+<span class="mi">64</span><span class="o">+</span><span class="n">F</span><span class="p">(</span><span class="n">Ru</span><span class="o">+</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="n">Ro</span><span class="o">-</span><span class="n">Ru</span><span class="p">)</span><span class="o">/</span><span class="n">Sx</span><span class="p">,</span><span class="n">yc</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">)),</span><span class="nb">range</span><span class="p">(</span><span class="n">Sx</span><span class="p">))):</span><span class="n">L</span><span class="p">(</span><span class="n">Iu</span><span class="o">+</span><span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="n">Io</span><span class="o">-</span><span class="n">Iu</span><span class="p">)</span><span class="o">/</span><span class="n">Sy</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="n">Sy</span>
+<span class="p">))))(</span><span class="o">-</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">24</span><span class="p">))</span>
+<span class="c1">#    \___ ___/  \___ ___/  |   |   |__ lines on screen</span>
+<span class="c1">#        V          V      |   |______ columns on screen</span>
+<span class="c1">#        |          |      |__________ maximum of &quot;iterations&quot;</span>
+<span class="c1">#        |          |_________________ range on y axis</span>
+<span class="c1">#        |____________________________ range on x axis</span>
+</pre></div>
+</div>
+<p>Don't try this at home, kids!</p>
+</div>
+<div class="section" id="what-does-the-slash-in-the-parameter-list-of-a-function-mean">
+<span id="faq-positional-only-arguments"></span><h3><a class="toc-backref" href="#id26">函数参数列表中的斜杠（/）是什么意思？</a><a class="headerlink" href="#what-does-the-slash-in-the-parameter-list-of-a-function-mean" title="永久链接至标题">¶</a></h3>
+<p>A slash in the argument list of a function denotes that the parameters prior to
+it are positional-only.  Positional-only parameters are the ones without an
+externally-usable name.  Upon calling a function that accepts positional-only
+parameters, arguments are mapped to parameters based solely on their position.
+For example, <a class="reference internal" href="../library/functions.html#pow" title="pow"><code class="xref py py-func docutils literal notranslate"><span class="pre">pow()</span></code></a> is a function that accepts positional-only parameters.
+Its documentation looks like this:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="nb">pow</span><span class="p">)</span>
+<span class="go">Help on built-in function pow in module builtins:</span>
+
+<span class="go">pow(x, y, z=None, /)</span>
+<span class="go">   Equivalent to x**y (with two arguments) or x**y % z (with three arguments)</span>
+
+<span class="go">   Some types, such as ints, are able to use a more efficient algorithm when</span>
+<span class="go">   invoked using the three argument form.</span>
+</pre></div>
+</div>
+<p>The slash at the end of the parameter list means that all three parameters are
+positional-only. Thus, calling <a class="reference internal" href="../library/functions.html#pow" title="pow"><code class="xref py py-func docutils literal notranslate"><span class="pre">pow()</span></code></a> with keyword aguments would lead to
+an error:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">pow() takes no keyword arguments</span>
+</pre></div>
+</div>
+<p>Note that as of this writing this is only documentational and no valid syntax
+in Python, although there is <span class="target" id="index-2"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-0570"><strong>PEP 570</strong></a>, which proposes a syntax for
+position-only parameters in Python.</p>
+</div>
+</div>
+<div class="section" id="numbers-and-strings">
+<h2><a class="toc-backref" href="#id27">数字和字符串</a><a class="headerlink" href="#numbers-and-strings" title="永久链接至标题">¶</a></h2>
+<div class="section" id="how-do-i-specify-hexadecimal-and-octal-integers">
+<h3><a class="toc-backref" href="#id28">如何指定十六进制和八进制整数？</a><a class="headerlink" href="#how-do-i-specify-hexadecimal-and-octal-integers" title="永久链接至标题">¶</a></h3>
+<p>To specify an octal digit, precede the octal value with a zero, and then a lower
+or uppercase &quot;o&quot;.  For example, to set the variable &quot;a&quot; to the octal value &quot;10&quot;
+(8 in decimal), type:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mo">0o10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+<p>Hexadecimal is just as easy.  Simply precede the hexadecimal number with a zero,
+and then a lower or uppercase &quot;x&quot;.  Hexadecimal digits can be specified in lower
+or uppercase.  For example, in the Python interpreter:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mh">0xa5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">165</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mh">0XB2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
+<span class="go">178</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="why-does-22-10-return-3">
+<h3><a class="toc-backref" href="#id29">为什么-22 // 10返回-3？</a><a class="headerlink" href="#why-does-22-10-return-3" title="永久链接至标题">¶</a></h3>
+<p>It's primarily driven by the desire that <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">%</span> <span class="pre">j</span></code> have the same sign as <code class="docutils literal notranslate"><span class="pre">j</span></code>.
+If you want that, and also want:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">==</span> <span class="p">(</span><span class="n">i</span> <span class="o">//</span> <span class="n">j</span><span class="p">)</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>then integer division has to return the floor.  C also requires that identity to
+hold, and then compilers that truncate <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">//</span> <span class="pre">j</span></code> need to make <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">%</span> <span class="pre">j</span></code> have
+the same sign as <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p>
+<p>There are few real use cases for <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">%</span> <span class="pre">j</span></code> when <code class="docutils literal notranslate"><span class="pre">j</span></code> is negative.  When <code class="docutils literal notranslate"><span class="pre">j</span></code>
+is positive, there are many, and in virtually all of them it's more useful for
+<code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">%</span> <span class="pre">j</span></code> to be <code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">0</span></code>.  If the clock says 10 now, what did it say 200 hours
+ago?  <code class="docutils literal notranslate"><span class="pre">-190</span> <span class="pre">%</span> <span class="pre">12</span> <span class="pre">==</span> <span class="pre">2</span></code> is useful; <code class="docutils literal notranslate"><span class="pre">-190</span> <span class="pre">%</span> <span class="pre">12</span> <span class="pre">==</span> <span class="pre">-10</span></code> is a bug waiting to
+bite.</p>
+</div>
+<div class="section" id="how-do-i-convert-a-string-to-a-number">
+<h3><a class="toc-backref" href="#id30">如何将字符串转换为数字？</a><a class="headerlink" href="#how-do-i-convert-a-string-to-a-number" title="永久链接至标题">¶</a></h3>
+<p>For integers, use the built-in <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-func docutils literal notranslate"><span class="pre">int()</span></code></a> type constructor, e.g. <code class="docutils literal notranslate"><span class="pre">int('144')</span>
+<span class="pre">==</span> <span class="pre">144</span></code>.  Similarly, <a class="reference internal" href="../library/functions.html#float" title="float"><code class="xref py py-func docutils literal notranslate"><span class="pre">float()</span></code></a> converts to floating-point,
+e.g. <code class="docutils literal notranslate"><span class="pre">float('144')</span> <span class="pre">==</span> <span class="pre">144.0</span></code>.</p>
+<p>By default, these interpret the number as decimal, so that <code class="docutils literal notranslate"><span class="pre">int('0144')</span> <span class="pre">==</span>
+<span class="pre">144</span></code> and <code class="docutils literal notranslate"><span class="pre">int('0x144')</span></code> raises <a class="reference internal" href="../library/exceptions.html#ValueError" title="ValueError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code></a>. <code class="docutils literal notranslate"><span class="pre">int(string,</span> <span class="pre">base)</span></code> takes
+the base to convert from as a second optional argument, so <code class="docutils literal notranslate"><span class="pre">int('0x144',</span> <span class="pre">16)</span> <span class="pre">==</span>
+<span class="pre">324</span></code>.  If the base is specified as 0, the number is interpreted using Python's
+rules: a leading '0o' indicates octal, and '0x' indicates a hex number.</p>
+<p>Do not use the built-in function <a class="reference internal" href="../library/functions.html#eval" title="eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> if all you need is to convert
+strings to numbers.  <a class="reference internal" href="../library/functions.html#eval" title="eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> will be significantly slower and it presents a
+security risk: someone could pass you a Python expression that might have
+unwanted side effects.  For example, someone could pass
+<code class="docutils literal notranslate"><span class="pre">__import__('os').system(&quot;rm</span> <span class="pre">-rf</span> <span class="pre">$HOME&quot;)</span></code> which would erase your home
+directory.</p>
+<p><a class="reference internal" href="../library/functions.html#eval" title="eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> also has the effect of interpreting numbers as Python expressions,
+so that e.g. <code class="docutils literal notranslate"><span class="pre">eval('09')</span></code> gives a syntax error because Python does not allow
+leading '0' in a decimal number (except '0').</p>
+</div>
+<div class="section" id="how-do-i-convert-a-number-to-a-string">
+<h3><a class="toc-backref" href="#id31">如何将数字转换为字符串？</a><a class="headerlink" href="#how-do-i-convert-a-number-to-a-string" title="永久链接至标题">¶</a></h3>
+<p>To convert, e.g., the number 144 to the string '144', use the built-in type
+constructor <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-func docutils literal notranslate"><span class="pre">str()</span></code></a>.  If you want a hexadecimal or octal representation, use
+the built-in functions <a class="reference internal" href="../library/functions.html#hex" title="hex"><code class="xref py py-func docutils literal notranslate"><span class="pre">hex()</span></code></a> or <a class="reference internal" href="../library/functions.html#oct" title="oct"><code class="xref py py-func docutils literal notranslate"><span class="pre">oct()</span></code></a>.  For fancy formatting, see
+the <a class="reference internal" href="../reference/lexical_analysis.html#f-strings"><span class="std std-ref">格式化字符串字面值</span></a> and <a class="reference internal" href="../library/string.html#formatstrings"><span class="std std-ref">格式字符串语法</span></a> sections,
+e.g. <code class="docutils literal notranslate"><span class="pre">&quot;{:04d}&quot;.format(144)</span></code> yields
+<code class="docutils literal notranslate"><span class="pre">'0144'</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;{:.3f}&quot;.format(1.0/3.0)</span></code> yields <code class="docutils literal notranslate"><span class="pre">'0.333'</span></code>.</p>
+</div>
+<div class="section" id="how-do-i-modify-a-string-in-place">
+<h3><a class="toc-backref" href="#id32">如何修改字符串？</a><a class="headerlink" href="#how-do-i-modify-a-string-in-place" title="永久链接至标题">¶</a></h3>
+<p>You can't, because strings are immutable.  In most situations, you should
+simply construct a new string from the various parts you want to assemble
+it from.  However, if you need an object with the ability to modify in-place
+unicode data, try using an <a class="reference internal" href="../library/io.html#io.StringIO" title="io.StringIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">io.StringIO</span></code></a> object or the <a class="reference internal" href="../library/array.html#module-array" title="array: Space efficient arrays of uniformly typed numeric values."><code class="xref py py-mod docutils literal notranslate"><span class="pre">array</span></code></a>
+module:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">io</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;Hello, world&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sio</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sio</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+<span class="go">&#39;Hello, world&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sio</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sio</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;there!&quot;</span><span class="p">)</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sio</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+<span class="go">&#39;Hello, there!&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">array</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">array(&#39;u&#39;, &#39;Hello, world&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">array(&#39;u&#39;, &#39;yello, world&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">tounicode</span><span class="p">()</span>
+<span class="go">&#39;yello, world&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-do-i-use-strings-to-call-functions-methods">
+<h3><a class="toc-backref" href="#id33">如何使用字符串调用函数/方法？</a><a class="headerlink" href="#how-do-i-use-strings-to-call-functions-methods" title="永久链接至标题">¶</a></h3>
+<p>有各种技术。</p>
+<ul>
+<li><p>The best is to use a dictionary that maps strings to functions.  The primary
+advantage of this technique is that the strings do not need to match the names
+of the functions.  This is also the primary technique used to emulate a case
+construct:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">a</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">b</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="n">dispatch</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;go&#39;</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">:</span> <span class="n">b</span><span class="p">}</span>  <span class="c1"># Note lack of parens for funcs</span>
+
+<span class="n">dispatch</span><span class="p">[</span><span class="n">get_input</span><span class="p">()]()</span>  <span class="c1"># Note trailing parens to call function</span>
+</pre></div>
+</div>
+</li>
+<li><p>使用内置函数 <a class="reference internal" href="../library/functions.html#getattr" title="getattr"><code class="xref py py-func docutils literal notranslate"><span class="pre">getattr()</span></code></a></p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">foo</span>
+<span class="nb">getattr</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)()</span>
+</pre></div>
+</div>
+<p>Note that <a class="reference internal" href="../library/functions.html#getattr" title="getattr"><code class="xref py py-func docutils literal notranslate"><span class="pre">getattr()</span></code></a> works on any object, including classes, class
+instances, modules, and so on.</p>
+<p>This is used in several places in the standard library, like this:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">do_foo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">do_bar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">foo_instance</span><span class="p">,</span> <span class="s1">&#39;do_&#39;</span> <span class="o">+</span> <span class="n">opname</span><span class="p">)</span>
+<span class="n">f</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use <a class="reference internal" href="../library/functions.html#locals" title="locals"><code class="xref py py-func docutils literal notranslate"><span class="pre">locals()</span></code></a> or <a class="reference internal" href="../library/functions.html#eval" title="eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> to resolve the function name:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myFunc</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+
+<span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;myFunc&quot;</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()[</span><span class="n">fname</span><span class="p">]</span>
+<span class="n">f</span><span class="p">()</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="n">f</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Note: Using <a class="reference internal" href="../library/functions.html#eval" title="eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> is slow and dangerous.  If you don't have absolute
+control over the contents of the string, someone could pass a string that
+resulted in an arbitrary function being executed.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="is-there-an-equivalent-to-perl-s-chomp-for-removing-trailing-newlines-from-strings">
+<h3><a class="toc-backref" href="#id34">是否有与Perl的chomp()等效的方法，用于从字符串中删除尾随换行符？</a><a class="headerlink" href="#is-there-an-equivalent-to-perl-s-chomp-for-removing-trailing-newlines-from-strings" title="永久链接至标题">¶</a></h3>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">S.rstrip(&quot;\r\n&quot;)</span></code> to remove all occurrences of any line
+terminator from the end of the string <code class="docutils literal notranslate"><span class="pre">S</span></code> without removing other trailing
+whitespace.  If the string <code class="docutils literal notranslate"><span class="pre">S</span></code> represents more than one line, with several
+empty lines at the end, the line terminators for all the blank lines will
+be removed:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;line 1 </span><span class="se">\r\n</span><span class="s2">&quot;</span>
+<span class="gp">... </span>         <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
+<span class="gp">... </span>         <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lines</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\r</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">&#39;line 1 &#39;</span>
+</pre></div>
+</div>
+<p>Since this is typically only desired when reading text one line at a time, using
+<code class="docutils literal notranslate"><span class="pre">S.rstrip()</span></code> this way works well.</p>
+</div>
+<div class="section" id="is-there-a-scanf-or-sscanf-equivalent">
+<h3><a class="toc-backref" href="#id35">Is there a scanf() or sscanf() equivalent?</a><a class="headerlink" href="#is-there-a-scanf-or-sscanf-equivalent" title="永久链接至标题">¶</a></h3>
+<p>不是这样的。</p>
+<p>For simple input parsing, the easiest approach is usually to split the line into
+whitespace-delimited words using the <a class="reference internal" href="../library/stdtypes.html#str.split" title="str.split"><code class="xref py py-meth docutils literal notranslate"><span class="pre">split()</span></code></a> method of string objects
+and then convert decimal strings to numeric values using <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-func docutils literal notranslate"><span class="pre">int()</span></code></a> or
+<a class="reference internal" href="../library/functions.html#float" title="float"><code class="xref py py-func docutils literal notranslate"><span class="pre">float()</span></code></a>.  <code class="docutils literal notranslate"><span class="pre">split()</span></code> supports an optional &quot;sep&quot; parameter which is useful
+if the line uses something other than whitespace as a separator.</p>
+<p>For more complicated input parsing, regular expressions are more powerful
+than C's <code class="xref c c-func docutils literal notranslate"><span class="pre">sscanf()</span></code> and better suited for the task.</p>
+</div>
+<div class="section" id="what-does-unicodedecodeerror-or-unicodeencodeerror-error-mean">
+<h3><a class="toc-backref" href="#id36">'UnicodeDecodeError' 或 'UnicodeEncodeError' 错误是什么意思？</a><a class="headerlink" href="#what-does-unicodedecodeerror-or-unicodeencodeerror-error-mean" title="永久链接至标题">¶</a></h3>
+<p>见 <a class="reference internal" href="../howto/unicode.html#unicode-howto"><span class="std std-ref">Unicode 指南</span></a></p>
+</div>
+</div>
+<div class="section" id="performance">
+<h2><a class="toc-backref" href="#id37">性能</a><a class="headerlink" href="#performance" title="永久链接至标题">¶</a></h2>
+<div class="section" id="my-program-is-too-slow-how-do-i-speed-it-up">
+<h3><a class="toc-backref" href="#id38">我的程序太慢了。该如何加快速度？</a><a class="headerlink" href="#my-program-is-too-slow-how-do-i-speed-it-up" title="永久链接至标题">¶</a></h3>
+<p>总的来说，这是个棘手的问题。首先，下面列出了深入了解前需要记住的事情：</p>
+<ul class="simple">
+<li><p>不同的Python实现具有不同的性能特征。本常见问题解答的重点是 <a class="reference internal" href="../glossary.html#term-cpython"><span class="xref std std-term">CPython</span></a> 。</p></li>
+<li><p>行为可能因操作系统而异，尤其是在谈论 I / O 或多线程时。</p></li>
+<li><p>在尝试优化任何代码 <em>前</em> ，应始终找到程序中的热点（请参阅 <a class="reference internal" href="../library/profile.html#module-profile" title="profile: Python source profiler."><code class="xref py py-mod docutils literal notranslate"><span class="pre">profile</span></code></a> 模块）。</p></li>
+<li><p>编写基准脚本将允许您在搜索改进时快速迭代（请参阅 <a class="reference internal" href="../library/timeit.html#module-timeit" title="timeit: Measure the execution time of small code snippets."><code class="xref py py-mod docutils literal notranslate"><span class="pre">timeit</span></code></a> 模块）。</p></li>
+<li><p>强烈建议在可能引入隐藏在复杂优化中的回归之前，要有良好的代码覆盖率（通过单元测试或任何其他技术）。</p></li>
+</ul>
+<p>话虽如此，加速Python代码有很多技巧。以下是一些可以达到可接受的性能水平的一般原则：</p>
+<ul class="simple">
+<li><p>使您的算法更快（或更改为更快的算法）可以产生比尝试在代码中使用微优化技巧更大的好处。</p></li>
+<li><p>使用正确的数据结构。参考文档 <a class="reference internal" href="../library/stdtypes.html#bltin-types"><span class="std std-ref">内置类型</span></a> 和 <a class="reference internal" href="../library/collections.html#module-collections" title="collections: Container datatypes"><code class="xref py py-mod docutils literal notranslate"><span class="pre">collections</span></code></a> 模块。</p></li>
+<li><p>当标准库提供用于执行某些操作的原语时，可能（尽管不能保证）比您可能提出的任何替代方案更快。对于用C编写的原语，例如内置函数和一些扩展类型，这是真的。例如，请确保使用 <a class="reference internal" href="../library/stdtypes.html#list.sort" title="list.sort"><code class="xref py py-meth docutils literal notranslate"><span class="pre">list.sort()</span></code></a> 内置方法或相关的 <a class="reference internal" href="../library/functions.html#sorted" title="sorted"><code class="xref py py-func docutils literal notranslate"><span class="pre">sorted()</span></code></a> 函数进行排序（有关适度高级用法的示例，请参阅 <a class="reference internal" href="../howto/sorting.html#sortinghowto"><span class="std std-ref">排序指南</span></a> ）。</p></li>
+<li><p>抽象倾向于创造间接性并迫使翻译更多地工作。如果间接级别超过完成的有用工作量，则程序将变慢。你应该避免过度抽象，特别是在微小的功能或方法的形式下（这通常也会对可读性产生不利影响）。</p></li>
+</ul>
+<p>如果你已经达到纯Python允许的限制，那么有一些工具可以让你走得更远。例如， <a class="reference external" href="http://cython.org">Cython</a> 可以将稍微修改的Python代码版本编译为C扩展，并且可以在许多不同的平台上使用。 Cython可以利用编译（和可选的类型注释）来使代码明显快于解释时的速度。如果您对C编程技能有信心，也可以自己编写 <a class="reference internal" href="../extending/index.html#extending-index"><span class="std std-ref">write a C extension module</span></a> 。</p>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p>专门介绍 <a class="reference external" href="https://wiki.python.org/moin/PythonSpeed/PerformanceTips">性能提示</a> 的wiki页面。</p>
+</div>
+</div>
+<div class="section" id="what-is-the-most-efficient-way-to-concatenate-many-strings-together">
+<span id="efficient-string-concatenation"></span><h3><a class="toc-backref" href="#id39">将多个字符串连接在一起的最有效方法是什么？</a><a class="headerlink" href="#what-is-the-most-efficient-way-to-concatenate-many-strings-together" title="永久链接至标题">¶</a></h3>
+<p><a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> and <a class="reference internal" href="../library/stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> objects are immutable, therefore concatenating
+many strings together is inefficient as each concatenation creates a new
+object.  In the general case, the total runtime cost is quadratic in the
+total string length.</p>
+<p>To accumulate many <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> objects, the recommended idiom is to place
+them into a list and call <a class="reference internal" href="../library/stdtypes.html#str.join" title="str.join"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.join()</span></code></a> at the end:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">my_strings</span><span class="p">:</span>
+    <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>（另一个合理有效的习惯用法是 <a class="reference internal" href="../library/io.html#io.StringIO" title="io.StringIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">io.StringIO</span></code></a> ）</p>
+<p>To accumulate many <a class="reference internal" href="../library/stdtypes.html#bytes" title="bytes"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytes</span></code></a> objects, the recommended idiom is to extend
+a <a class="reference internal" href="../library/stdtypes.html#bytearray" title="bytearray"><code class="xref py py-class docutils literal notranslate"><span class="pre">bytearray</span></code></a> object using in-place concatenation (the <code class="docutils literal notranslate"><span class="pre">+=</span></code> operator):</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">my_bytes_objects</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">+=</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sequences-tuples-lists">
+<h2><a class="toc-backref" href="#id40">序列（元组/列表）</a><a class="headerlink" href="#sequences-tuples-lists" title="永久链接至标题">¶</a></h2>
+<div class="section" id="how-do-i-convert-between-tuples-and-lists">
+<h3><a class="toc-backref" href="#id41">如何在元组和列表之间进行转换？</a><a class="headerlink" href="#how-do-i-convert-between-tuples-and-lists" title="永久链接至标题">¶</a></h3>
+<p>The type constructor <code class="docutils literal notranslate"><span class="pre">tuple(seq)</span></code> converts any sequence (actually, any
+iterable) into a tuple with the same items in the same order.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">tuple([1,</span> <span class="pre">2,</span> <span class="pre">3])</span></code> yields <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></code> and <code class="docutils literal notranslate"><span class="pre">tuple('abc')</span></code>
+yields <code class="docutils literal notranslate"><span class="pre">('a',</span> <span class="pre">'b',</span> <span class="pre">'c')</span></code>.  If the argument is a tuple, it does not make a copy
+but returns the same object, so it is cheap to call <a class="reference internal" href="../library/stdtypes.html#tuple" title="tuple"><code class="xref py py-func docutils literal notranslate"><span class="pre">tuple()</span></code></a> when you
+aren't sure that an object is already a tuple.</p>
+<p>The type constructor <code class="docutils literal notranslate"><span class="pre">list(seq)</span></code> converts any sequence or iterable into a list
+with the same items in the same order.  For example, <code class="docutils literal notranslate"><span class="pre">list((1,</span> <span class="pre">2,</span> <span class="pre">3))</span></code> yields
+<code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> and <code class="docutils literal notranslate"><span class="pre">list('abc')</span></code> yields <code class="docutils literal notranslate"><span class="pre">['a',</span> <span class="pre">'b',</span> <span class="pre">'c']</span></code>.  If the argument
+is a list, it makes a copy just like <code class="docutils literal notranslate"><span class="pre">seq[:]</span></code> would.</p>
+</div>
+<div class="section" id="what-s-a-negative-index">
+<h3><a class="toc-backref" href="#id42">什么是负数序号？</a><a class="headerlink" href="#what-s-a-negative-index" title="永久链接至标题">¶</a></h3>
+<p>Python sequences are indexed with positive numbers and negative numbers.  For
+positive numbers 0 is the first index 1 is the second index and so forth.  For
+negative indices -1 is the last index and -2 is the penultimate (next to last)
+index and so forth.  Think of <code class="docutils literal notranslate"><span class="pre">seq[-n]</span></code> as the same as <code class="docutils literal notranslate"><span class="pre">seq[len(seq)-n]</span></code>.</p>
+<p>Using negative indices can be very convenient.  For example <code class="docutils literal notranslate"><span class="pre">S[:-1]</span></code> is all of
+the string except for its last character, which is useful for removing the
+trailing newline from a string.</p>
+</div>
+<div class="section" id="how-do-i-iterate-over-a-sequence-in-reverse-order">
+<h3><a class="toc-backref" href="#id43">如何以相反的顺序迭代序列？</a><a class="headerlink" href="#how-do-i-iterate-over-a-sequence-in-reverse-order" title="永久链接至标题">¶</a></h3>
+<p>使用 <a class="reference internal" href="../library/functions.html#reversed" title="reversed"><code class="xref py py-func docutils literal notranslate"><span class="pre">reversed()</span></code></a> 内置函数，这是Python 2.4中的新功能:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+    <span class="o">...</span>  <span class="c1"># do something with x ...</span>
+</pre></div>
+</div>
+<p>这不会修改您的原始序列，而是构建一个反向顺序的新副本以进行迭代。</p>
+<p>在 Python 2.3 里，您可以使用扩展切片语法:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="o">...</span>  <span class="c1"># do something with x ...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-do-you-remove-duplicates-from-a-list">
+<h3><a class="toc-backref" href="#id44">如何从列表中删除重复项？</a><a class="headerlink" href="#how-do-you-remove-duplicates-from-a-list" title="永久链接至标题">¶</a></h3>
+<p>有关执行此操作的许多方法的详细讨论，请参阅 Python Cookbook:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://code.activestate.com/recipes/52560/">https://code.activestate.com/recipes/52560/</a></p>
+</div></blockquote>
+<p>如果您不介意重新排序列表，请对其进行排序，然后从列表末尾进行扫描，删除重复项：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">mylist</span><span class="p">:</span>
+    <span class="n">mylist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="n">mylist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">last</span> <span class="o">==</span> <span class="n">mylist</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">del</span> <span class="n">mylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">mylist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>如果列表的所有元素都可以用作设置键（即：它们都是 <a class="reference internal" href="../glossary.html#term-hashable"><span class="xref std std-term">hashable</span></a> ），这通常会更快:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">mylist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">mylist</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>这会将列表转换为集合，从而删除重复项，然后返回到列表中。</p>
+</div>
+<div class="section" id="how-do-you-make-an-array-in-python">
+<h3><a class="toc-backref" href="#id45">你如何在Python中创建一个数组？</a><a class="headerlink" href="#how-do-you-make-an-array-in-python" title="永久链接至标题">¶</a></h3>
+<p>使用列表:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s2">&quot;this&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="s2">&quot;an&quot;</span><span class="p">,</span> <span class="s2">&quot;array&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Lists are equivalent to C or Pascal arrays in their time complexity; the primary
+difference is that a Python list can contain objects of many different types.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">array</span></code> module also provides methods for creating arrays of fixed types
+with compact representations, but they are slower to index than lists.  Also
+note that the Numeric extensions and others define array-like structures with
+various characteristics as well.</p>
+<p>To get Lisp-style linked lists, you can emulate cons cells using tuples:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">lisp_list</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;like&quot;</span><span class="p">,</span>  <span class="p">(</span><span class="s2">&quot;this&quot;</span><span class="p">,</span>  <span class="p">(</span><span class="s2">&quot;example&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>If mutability is desired, you could use lists instead of tuples.  Here the
+analogue of lisp car is <code class="docutils literal notranslate"><span class="pre">lisp_list[0]</span></code> and the analogue of cdr is
+<code class="docutils literal notranslate"><span class="pre">lisp_list[1]</span></code>.  Only do this if you're sure you really need to, because it's
+usually a lot slower than using Python lists.</p>
+</div>
+<div class="section" id="how-do-i-create-a-multidimensional-list">
+<span id="faq-multidimensional-list"></span><h3><a class="toc-backref" href="#id46">如何创建多维列表？</a><a class="headerlink" href="#how-do-i-create-a-multidimensional-list" title="永久链接至标题">¶</a></h3>
+<p>你可能试图制作一个像这样的多维数组:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>如果你打印它，看起来是正确的：</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="go">[[None, None], [None, None], [None, None]]</span>
+</pre></div>
+</div>
+<p>但是，当您分配值时，它会显示在多个位置：</p>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span>
+<span class="go">[[5, None], [5, None], [5, None]]</span>
+</pre></div>
+</div>
+<p>The reason is that replicating a list with <code class="docutils literal notranslate"><span class="pre">*</span></code> doesn't create copies, it only
+creates references to the existing objects.  The <code class="docutils literal notranslate"><span class="pre">*3</span></code> creates a list
+containing 3 references to the same list of length two.  Changes to one row will
+show in all rows, which is almost certainly not what you want.</p>
+<p>The suggested approach is to create a list of the desired length first and then
+fill in each element with a newly created list:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>This generates a list containing 3 different lists of length two.  You can also
+use a list comprehension:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">w</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">h</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Or, you can use an extension that provides a matrix datatype; <a class="reference external" href="http://www.numpy.org/">NumPy</a> is the best known.</p>
+</div>
+<div class="section" id="how-do-i-apply-a-method-to-a-sequence-of-objects">
+<h3><a class="toc-backref" href="#id47">如何将方法应用于一系列对象？</a><a class="headerlink" href="#how-do-i-apply-a-method-to-a-sequence-of-objects" title="永久链接至标题">¶</a></h3>
+<p>使用列表理解：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">method</span><span class="p">()</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="why-does-a-tuple-i-item-raise-an-exception-when-the-addition-works">
+<span id="faq-augmented-assignment-tuple-error"></span><h3><a class="toc-backref" href="#id48">为什么在添加 _tuple[i]+=[‘item’] 时引发异常？</a><a class="headerlink" href="#why-does-a-tuple-i-item-raise-an-exception-when-the-addition-works" title="永久链接至标题">¶</a></h3>
+<p>This is because of a combination of the fact that augmented assignment
+operators are <em>assignment</em> operators, and the difference between mutable and
+immutable objects in Python.</p>
+<p>This discussion applies in general when augmented assignment operators are
+applied to elements of a tuple that point to mutable objects, but we'll use
+a <code class="docutils literal notranslate"><span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">+=</span></code> as our exemplar.</p>
+<p>如果你写成：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gt">Traceback (most recent call last):</span>
+   <span class="c">...</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object does not support item assignment</span>
+</pre></div>
+</div>
+<p>The reason for the exception should be immediately clear: <code class="docutils literal notranslate"><span class="pre">1</span></code> is added to the
+object <code class="docutils literal notranslate"><span class="pre">a_tuple[0]</span></code> points to (<code class="docutils literal notranslate"><span class="pre">1</span></code>), producing the result object, <code class="docutils literal notranslate"><span class="pre">2</span></code>,
+but when we attempt to assign the result of the computation, <code class="docutils literal notranslate"><span class="pre">2</span></code>, to element
+<code class="docutils literal notranslate"><span class="pre">0</span></code> of the tuple, we get an error because we can't change what an element of
+a tuple points to.</p>
+<p>Under the covers, what this augmented assignment statement is doing is
+approximately this:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object does not support item assignment</span>
+</pre></div>
+</div>
+<p>It is the assignment part of the operation that produces the error, since a
+tuple is immutable.</p>
+<p>When you write something like:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span> <span class="o">=</span> <span class="p">([</span><span class="s1">&#39;foo&#39;</span><span class="p">],</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object does not support item assignment</span>
+</pre></div>
+</div>
+<p>The exception is a bit more surprising, and even more surprising is the fact
+that even though there was an error, the append worked:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">[&#39;foo&#39;, &#39;item&#39;]</span>
+</pre></div>
+</div>
+<p>To see why this happens, you need to know that (a) if an object implements an
+<code class="docutils literal notranslate"><span class="pre">__iadd__</span></code> magic method, it gets called when the <code class="docutils literal notranslate"><span class="pre">+=</span></code> augmented assignment
+is executed, and its return value is what gets used in the assignment statement;
+and (b) for lists, <code class="docutils literal notranslate"><span class="pre">__iadd__</span></code> is equivalent to calling <code class="docutils literal notranslate"><span class="pre">extend</span></code> on the list
+and returning the list.  That's why we say that for lists, <code class="docutils literal notranslate"><span class="pre">+=</span></code> is a
+&quot;shorthand&quot; for <code class="docutils literal notranslate"><span class="pre">list.extend</span></code>:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_list</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_list</span>
+<span class="go">[1]</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">a_list</span><span class="o">.</span><span class="fm">__iadd__</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_list</span> <span class="o">=</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>The object pointed to by a_list has been mutated, and the pointer to the
+mutated object is assigned back to <code class="docutils literal notranslate"><span class="pre">a_list</span></code>.  The end result of the
+assignment is a no-op, since it is a pointer to the same object that <code class="docutils literal notranslate"><span class="pre">a_list</span></code>
+was previously pointing to, but the assignment still happens.</p>
+<p>Thus, in our tuple example what is happening is equivalent to:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="fm">__iadd__</span><span class="p">([</span><span class="s1">&#39;item&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+<span class="gt">Traceback (most recent call last):</span>
+  <span class="c">...</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;tuple&#39; object does not support item assignment</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">__iadd__</span></code> succeeds, and thus the list is extended, but even though
+<code class="docutils literal notranslate"><span class="pre">result</span></code> points to the same object that <code class="docutils literal notranslate"><span class="pre">a_tuple[0]</span></code> already points to,
+that final assignment still results in an error, because tuples are immutable.</p>
+</div>
+<div class="section" id="i-want-to-do-a-complicated-sort-can-you-do-a-schwartzian-transform-in-python">
+<h3><a class="toc-backref" href="#id49">我想做一个复杂的排序：你能用Python做一个Schwartzian变换吗？</a><a class="headerlink" href="#i-want-to-do-a-complicated-sort-can-you-do-a-schwartzian-transform-in-python" title="永久链接至标题">¶</a></h3>
+<p>该技术归功于Perl社区的 Randal Schwartz，它通过将每个元素映射到其 &quot;排序值（sort value）&quot; 的度量对列表中的元素进行排序。在Python中，使用 <a class="reference internal" href="../library/stdtypes.html#list.sort" title="list.sort"><code class="xref py py-meth docutils literal notranslate"><span class="pre">list.sort()</span></code></a> 方法的 <code class="docutils literal notranslate"><span class="pre">key</span></code> 参数：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">Isorted</span> <span class="o">=</span> <span class="n">L</span><span class="p">[:]</span>
+<span class="n">Isorted</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">15</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-can-i-sort-one-list-by-values-from-another-list">
+<h3><a class="toc-backref" href="#id50">如何按其他列表中的值对一个列表进行排序？</a><a class="headerlink" href="#how-can-i-sort-one-list-by-values-from-another-list" title="永久链接至标题">¶</a></h3>
+<p>将它们合并到元组的迭代器中，对结果列表进行排序，然后选择所需的元素。</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;what&quot;</span><span class="p">,</span> <span class="s2">&quot;I&#39;m&quot;</span><span class="p">,</span> <span class="s2">&quot;sorting&quot;</span><span class="p">,</span> <span class="s2">&quot;by&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;something&quot;</span><span class="p">,</span> <span class="s2">&quot;else&quot;</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">,</span> <span class="s2">&quot;sort&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">list1</span><span class="p">,</span> <span class="n">list2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span>
+<span class="go">[(&quot;I&#39;m&quot;, &#39;else&#39;), (&#39;by&#39;, &#39;sort&#39;), (&#39;sorting&#39;, &#39;to&#39;), (&#39;what&#39;, &#39;something&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span>
+<span class="go">[&#39;else&#39;, &#39;sort&#39;, &#39;to&#39;, &#39;something&#39;]</span>
+</pre></div>
+</div>
+<p>最后一步的替代方案是:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>If you find this more legible, you might prefer to use this instead of the final
+list comprehension.  However, it is almost twice as slow for long lists.  Why?
+First, the <code class="docutils literal notranslate"><span class="pre">append()</span></code> operation has to reallocate memory, and while it uses
+some tricks to avoid doing that each time, it still has to do it occasionally,
+and that costs quite a bit.  Second, the expression &quot;result.append&quot; requires an
+extra attribute lookup, and third, there's a speed reduction from having to make
+all those function calls.</p>
+</div>
+</div>
+<div class="section" id="objects">
+<h2><a class="toc-backref" href="#id51">对象</a><a class="headerlink" href="#objects" title="永久链接至标题">¶</a></h2>
+<div class="section" id="what-is-a-class">
+<h3><a class="toc-backref" href="#id52">什么是类？</a><a class="headerlink" href="#what-is-a-class" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">类</span></code> 是通过执行类语句创建的特定对象类型。<code class="docutils literal notranslate"><span class="pre">类对象</span></code> 被当作模板来创建实例对象，实例对象包含了特定于数据类型的数据（属性）和代码（方法）。</p>
+<p>类可以基于一个或多个的其他类，称之为基类（ES），它继承基类的属性和方法，这样就可以通过继承来连续地细化对象模型。例如：您可能有一个 <code class="docutils literal notranslate"><span class="pre">Mailbox</span></code> 类提供邮箱的基本访问方法.，它的子类 <code class="docutils literal notranslate"><span class="pre">MboxMailbox</span></code>, <code class="docutils literal notranslate"><span class="pre">MaildirMailbox</span></code>, <code class="docutils literal notranslate"><span class="pre">OutlookMailbox</span></code> 用于处理各种特定邮箱格式。</p>
+</div>
+<div class="section" id="what-is-a-method">
+<h3><a class="toc-backref" href="#id53">什么是方法？</a><a class="headerlink" href="#what-is-a-method" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">方法</span></code> 实际上就是类定义中的函数。对于某个对象 <code class="docutils literal notranslate"><span class="pre">x</span></code> 上的方法，通常称为 <code class="docutils literal notranslate"><span class="pre">x.name(arguments...)</span></code> 。</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">meth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">arg</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">attribute</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="what-is-self">
+<h3><a class="toc-backref" href="#id54">什么是 self ？</a><a class="headerlink" href="#what-is-self" title="永久链接至标题">¶</a></h3>
+<p>Self 只是 <code class="docutils literal notranslate"><span class="pre">方法</span></code> 的第一个参数的常规名称。例如：对于某个类的某个实例 <code class="docutils literal notranslate"><span class="pre">x</span></code> ，其方法 <code class="docutils literal notranslate"><span class="pre">meth(self,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">c)</span></code> 实际上应该被称为 <code class="docutils literal notranslate"><span class="pre">x.meth(a,</span> <span class="pre">b,</span> <span class="pre">c)</span></code> ；对于被调用的方法会被称为 <code class="docutils literal notranslate"><span class="pre">meth(x,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">c)</span></code> 。</p>
+<p>另请参阅 <a class="reference internal" href="design.html#why-self"><span class="std std-ref">为什么必须在方法定义和调用中显式使用“self”？</span></a> 。</p>
+</div>
+<div class="section" id="how-do-i-check-if-an-object-is-an-instance-of-a-given-class-or-of-a-subclass-of-it">
+<h3><a class="toc-backref" href="#id55">如何检查对象是否是给定类或其子类的实例？</a><a class="headerlink" href="#how-do-i-check-if-an-object-is-an-instance-of-a-given-class-or-of-a-subclass-of-it" title="永久链接至标题">¶</a></h3>
+<p>Use the built-in function <code class="docutils literal notranslate"><span class="pre">isinstance(obj,</span> <span class="pre">cls)</span></code>.  You can check if an object
+is an instance of any of a number of classes by providing a tuple instead of a
+single class, e.g. <code class="docutils literal notranslate"><span class="pre">isinstance(obj,</span> <span class="pre">(class1,</span> <span class="pre">class2,</span> <span class="pre">...))</span></code>, and can also
+check whether an object is one of Python's built-in types, e.g.
+<code class="docutils literal notranslate"><span class="pre">isinstance(obj,</span> <span class="pre">str)</span></code> or <code class="docutils literal notranslate"><span class="pre">isinstance(obj,</span> <span class="pre">(int,</span> <span class="pre">float,</span> <span class="pre">complex))</span></code>.</p>
+<p>Note that most programs do not use <a class="reference internal" href="../library/functions.html#isinstance" title="isinstance"><code class="xref py py-func docutils literal notranslate"><span class="pre">isinstance()</span></code></a> on user-defined classes
+very often.  If you are developing the classes yourself, a more proper
+object-oriented style is to define methods on the classes that encapsulate a
+particular behaviour, instead of checking the object's class and doing a
+different thing based on what class it is.  For example, if you have a function
+that does something:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Mailbox</span><span class="p">):</span>
+        <span class="o">...</span>  <span class="c1"># code to search a mailbox</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Document</span><span class="p">):</span>
+        <span class="o">...</span>  <span class="c1"># code to search a document</span>
+    <span class="k">elif</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>A better approach is to define a <code class="docutils literal notranslate"><span class="pre">search()</span></code> method on all the classes and just
+call it:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Mailbox</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>  <span class="c1"># code to search a mailbox</span>
+
+<span class="k">class</span> <span class="nc">Document</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>  <span class="c1"># code to search a document</span>
+
+<span class="n">obj</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="what-is-delegation">
+<h3><a class="toc-backref" href="#id56">什么是代理？</a><a class="headerlink" href="#what-is-delegation" title="永久链接至标题">¶</a></h3>
+<p>Delegation is an object oriented technique (also called a design pattern).
+Let's say you have an object <code class="docutils literal notranslate"><span class="pre">x</span></code> and want to change the behaviour of just one
+of its methods.  You can create a new class that provides a new implementation
+of the method you're interested in changing and delegates all other methods to
+the corresponding method of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<p>Python programmers can easily implement delegation.  For example, the following
+class implements a class that behaves like a file but converts all written data
+to uppercase:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UpperOut</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_outfile</span> <span class="o">=</span> <span class="n">outfile</span>
+
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_outfile</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">UpperOut</span></code> class redefines the <code class="docutils literal notranslate"><span class="pre">write()</span></code> method to convert the
+argument string to uppercase before calling the underlying
+<code class="docutils literal notranslate"><span class="pre">self.__outfile.write()</span></code> method.  All other methods are delegated to the
+underlying <code class="docutils literal notranslate"><span class="pre">self.__outfile</span></code> object.  The delegation is accomplished via the
+<code class="docutils literal notranslate"><span class="pre">__getattr__</span></code> method; consult <a class="reference internal" href="../reference/datamodel.html#attribute-access"><span class="std std-ref">the language reference</span></a>
+for more information about controlling attribute access.</p>
+<p>Note that for more general cases delegation can get trickier. When attributes
+must be set as well as retrieved, the class must define a <a class="reference internal" href="../reference/datamodel.html#object.__setattr__" title="object.__setattr__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__setattr__()</span></code></a>
+method too, and it must do so carefully.  The basic implementation of
+<a class="reference internal" href="../reference/datamodel.html#object.__setattr__" title="object.__setattr__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__setattr__()</span></code></a> is roughly equivalent to the following:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">X</span><span class="p">:</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Most <a class="reference internal" href="../reference/datamodel.html#object.__setattr__" title="object.__setattr__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__setattr__()</span></code></a> implementations must modify <code class="docutils literal notranslate"><span class="pre">self.__dict__</span></code> to store
+local state for self without causing an infinite recursion.</p>
+</div>
+<div class="section" id="how-do-i-call-a-method-defined-in-a-base-class-from-a-derived-class-that-overrides-it">
+<h3><a class="toc-backref" href="#id57">如何从覆盖基类的派生类调用基类中定义的方法?</a><a class="headerlink" href="#how-do-i-call-a-method-defined-in-a-base-class-from-a-derived-class-that-overrides-it" title="永久链接至标题">¶</a></h3>
+<p>Use the built-in <a class="reference internal" href="../library/functions.html#super" title="super"><code class="xref py py-func docutils literal notranslate"><span class="pre">super()</span></code></a> function:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Derived</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">meth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Derived</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">meth</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For version prior to 3.0, you may be using classic classes: For a class
+definition such as <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Derived(Base):</span> <span class="pre">...</span></code> you can call method <code class="docutils literal notranslate"><span class="pre">meth()</span></code>
+defined in <code class="docutils literal notranslate"><span class="pre">Base</span></code> (or one of <code class="docutils literal notranslate"><span class="pre">Base</span></code>'s base classes) as <code class="docutils literal notranslate"><span class="pre">Base.meth(self,</span>
+<span class="pre">arguments...)</span></code>.  Here, <code class="docutils literal notranslate"><span class="pre">Base.meth</span></code> is an unbound method, so you need to
+provide the <code class="docutils literal notranslate"><span class="pre">self</span></code> argument.</p>
+</div>
+<div class="section" id="how-can-i-organize-my-code-to-make-it-easier-to-change-the-base-class">
+<h3><a class="toc-backref" href="#id58">如何组织代码以便更改基类？</a><a class="headerlink" href="#how-can-i-organize-my-code-to-make-it-easier-to-change-the-base-class" title="永久链接至标题">¶</a></h3>
+<p>You could define an alias for the base class, assign the real base class to it
+before your class definition, and use the alias throughout your class.  Then all
+you have to change is the value assigned to the alias.  Incidentally, this trick
+is also handy if you want to decide dynamically (e.g. depending on availability
+of resources) which base class to use.  Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">BaseAlias</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">real</span> <span class="n">base</span> <span class="n">class</span><span class="o">&gt;</span>
+
+<span class="k">class</span> <span class="nc">Derived</span><span class="p">(</span><span class="n">BaseAlias</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">meth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">BaseAlias</span><span class="o">.</span><span class="n">meth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-do-i-create-static-class-data-and-static-class-methods">
+<h3><a class="toc-backref" href="#id59">如何创建静态类数据和静态类方法？</a><a class="headerlink" href="#how-do-i-create-static-class-data-and-static-class-methods" title="永久链接至标题">¶</a></h3>
+<p>Both static data and static methods (in the sense of C++ or Java) are supported
+in Python.</p>
+<p>For static data, simply define a class attribute.  To assign a new value to the
+attribute, you have to explicitly use the class name in the assignment:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># number of times C.__init__ called</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">C</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">getcount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">C</span><span class="o">.</span><span class="n">count</span>  <span class="c1"># or return self.count</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">c.count</span></code> also refers to <code class="docutils literal notranslate"><span class="pre">C.count</span></code> for any <code class="docutils literal notranslate"><span class="pre">c</span></code> such that <code class="docutils literal notranslate"><span class="pre">isinstance(c,</span>
+<span class="pre">C)</span></code> holds, unless overridden by <code class="docutils literal notranslate"><span class="pre">c</span></code> itself or by some class on the base-class
+search path from <code class="docutils literal notranslate"><span class="pre">c.__class__</span></code> back to <code class="docutils literal notranslate"><span class="pre">C</span></code>.</p>
+<p>Caution: within a method of C, an assignment like <code class="docutils literal notranslate"><span class="pre">self.count</span> <span class="pre">=</span> <span class="pre">42</span></code> creates a
+new and unrelated instance named &quot;count&quot; in <code class="docutils literal notranslate"><span class="pre">self</span></code>'s own dict.  Rebinding of a
+class-static data name must always specify the class whether inside a method or
+not:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">314</span>
+</pre></div>
+</div>
+<p>Static methods are possible:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">):</span>
+        <span class="c1"># No &#39;self&#39; parameter!</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>However, a far more straightforward way to get the effect of a static method is
+via a simple module-level function:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getcount</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">C</span><span class="o">.</span><span class="n">count</span>
+</pre></div>
+</div>
+<p>If your code is structured so as to define one class (or tightly related class
+hierarchy) per module, this supplies the desired encapsulation.</p>
+</div>
+<div class="section" id="how-can-i-overload-constructors-or-methods-in-python">
+<h3><a class="toc-backref" href="#id60">如何在Python中重载构造函数（或方法）？</a><a class="headerlink" href="#how-can-i-overload-constructors-or-methods-in-python" title="永久链接至标题">¶</a></h3>
+<p>这个答案实际上适用于所有方法，但问题通常首先出现在构造函数的上下文中。</p>
+<p>在C ++中，你会这样写</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">class</span> <span class="n">C</span> <span class="p">{</span>
+    <span class="n">C</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;No arguments</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">C</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Argument is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>在Python中，您必须编写一个构造函数，使用默认参数捕获所有情况。例如：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No arguments&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Argument is&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这不完全等同，但在实践中足够接近。</p>
+<p>你也可以尝试一个可变长度的参数列表，例如:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>相同的方法适用于所有方法定义。</p>
+</div>
+<div class="section" id="i-try-to-use-spam-and-i-get-an-error-about-someclassname-spam">
+<h3><a class="toc-backref" href="#id61">我尝试使用 __spam ，但是得到一个关于 _SomeClassName__spam 的错误信息。</a><a class="headerlink" href="#i-try-to-use-spam-and-i-get-an-error-about-someclassname-spam" title="永久链接至标题">¶</a></h3>
+<p>Variable names with double leading underscores are &quot;mangled&quot; to provide a simple
+but effective way to define class private variables.  Any identifier of the form
+<code class="docutils literal notranslate"><span class="pre">__spam</span></code> (at least two leading underscores, at most one trailing underscore)
+is textually replaced with <code class="docutils literal notranslate"><span class="pre">_classname__spam</span></code>, where <code class="docutils literal notranslate"><span class="pre">classname</span></code> is the
+current class name with any leading underscores stripped.</p>
+<p>This doesn't guarantee privacy: an outside user can still deliberately access
+the &quot;_classname__spam&quot; attribute, and private values are visible in the object's
+<code class="docutils literal notranslate"><span class="pre">__dict__</span></code>.  Many Python programmers never bother to use private variable
+names at all.</p>
+</div>
+<div class="section" id="my-class-defines-del-but-it-is-not-called-when-i-delete-the-object">
+<h3><a class="toc-backref" href="#id62">我的类定义了 __del__ 但是在删除对象时没有调用它。</a><a class="headerlink" href="#my-class-defines-del-but-it-is-not-called-when-i-delete-the-object" title="永久链接至标题">¶</a></h3>
+<p>这有几个可能的原因。</p>
+<p>The del statement does not necessarily call <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> -- it simply
+decrements the object's reference count, and if this reaches zero
+<a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> is called.</p>
+<p>If your data structures contain circular links (e.g. a tree where each child has
+a parent reference and each parent has a list of children) the reference counts
+will never go back to zero.  Once in a while Python runs an algorithm to detect
+such cycles, but the garbage collector might run some time after the last
+reference to your data structure vanishes, so your <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> method may be
+called at an inconvenient and random time. This is inconvenient if you're trying
+to reproduce a problem. Worse, the order in which object's <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a>
+methods are executed is arbitrary.  You can run <a class="reference internal" href="../library/gc.html#gc.collect" title="gc.collect"><code class="xref py py-func docutils literal notranslate"><span class="pre">gc.collect()</span></code></a> to force a
+collection, but there <em>are</em> pathological cases where objects will never be
+collected.</p>
+<p>Despite the cycle collector, it's still a good idea to define an explicit
+<code class="docutils literal notranslate"><span class="pre">close()</span></code> method on objects to be called whenever you're done with them.  The
+<code class="docutils literal notranslate"><span class="pre">close()</span></code> method can then remove attributes that refer to subobjects.  Don't
+call <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> directly -- <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> should call <code class="docutils literal notranslate"><span class="pre">close()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">close()</span></code> should make sure that it can be called more than once for the same
+object.</p>
+<p>Another way to avoid cyclical references is to use the <a class="reference internal" href="../library/weakref.html#module-weakref" title="weakref: Support for weak references and weak dictionaries."><code class="xref py py-mod docutils literal notranslate"><span class="pre">weakref</span></code></a> module,
+which allows you to point to objects without incrementing their reference count.
+Tree data structures, for instance, should use weak references for their parent
+and sibling references (if they need them!).</p>
+<p>Finally, if your <a class="reference internal" href="../reference/datamodel.html#object.__del__" title="object.__del__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__del__()</span></code></a> method raises an exception, a warning message
+is printed to <a class="reference internal" href="../library/sys.html#sys.stderr" title="sys.stderr"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.stderr</span></code></a>.</p>
+</div>
+<div class="section" id="how-do-i-get-a-list-of-all-instances-of-a-given-class">
+<h3><a class="toc-backref" href="#id63">如何获取给定类的所有实例的列表？</a><a class="headerlink" href="#how-do-i-get-a-list-of-all-instances-of-a-given-class" title="永久链接至标题">¶</a></h3>
+<p>Python不跟踪类（或内置类型）的所有实例。您可以对类的构造函数进行编程，以通过保留每个实例的弱引用列表来跟踪所有实例。</p>
+</div>
+<div class="section" id="why-does-the-result-of-id-appear-to-be-not-unique">
+<h3><a class="toc-backref" href="#id64">为什么 <code class="docutils literal notranslate"><span class="pre">id()</span></code> 的结果看起来不是唯一的？</a><a class="headerlink" href="#why-does-the-result-of-id-appear-to-be-not-unique" title="永久链接至标题">¶</a></h3>
+<p><a class="reference internal" href="../library/functions.html#id" title="id"><code class="xref py py-func docutils literal notranslate"><span class="pre">id()</span></code></a> 返回一个整数，该整数在对象的生命周期内保证是唯一的。因为在CPython中，这是对象的内存地址，所以经常发生在从内存中删除对象之后，下一个新创建的对象被分配在内存中的相同位置。这个例子说明了这一点：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># doctest: +SKIP</span>
+<span class="go">13901272</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span> <span class="c1"># doctest: +SKIP</span>
+<span class="go">13901272</span>
+</pre></div>
+</div>
+<p>这两个id属于之前创建的不同整数对象，并在执行 <code class="docutils literal notranslate"><span class="pre">id()</span></code> 调用后立即删除。要确保要检查其id的对象仍处于活动状态，请创建对该对象的另一个引用：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># doctest: +SKIP</span>
+<span class="go">13901272</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># doctest: +SKIP</span>
+<span class="go">13891296</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="modules">
+<h2><a class="toc-backref" href="#id65">模块</a><a class="headerlink" href="#modules" title="永久链接至标题">¶</a></h2>
+<div class="section" id="how-do-i-create-a-pyc-file">
+<h3><a class="toc-backref" href="#id66">如何创建 .pyc 文件？</a><a class="headerlink" href="#how-do-i-create-a-pyc-file" title="永久链接至标题">¶</a></h3>
+<p>When a module is imported for the first time (or when the source file has
+changed since the current compiled file was created) a <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> file containing
+the compiled code should be created in a <code class="docutils literal notranslate"><span class="pre">__pycache__</span></code> subdirectory of the
+directory containing the <code class="docutils literal notranslate"><span class="pre">.py</span></code> file.  The <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> file will have a
+filename that starts with the same name as the <code class="docutils literal notranslate"><span class="pre">.py</span></code> file, and ends with
+<code class="docutils literal notranslate"><span class="pre">.pyc</span></code>, with a middle component that depends on the particular <code class="docutils literal notranslate"><span class="pre">python</span></code>
+binary that created it.  (See <span class="target" id="index-3"></span><a class="pep reference external" href="https://www.python.org/dev/peps/pep-3147"><strong>PEP 3147</strong></a> for details.)</p>
+<p>One reason that a <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> file may not be created is a permissions problem
+with the directory containing the source file, meaning that the <code class="docutils literal notranslate"><span class="pre">__pycache__</span></code>
+subdirectory cannot be created. This can happen, for example, if you develop as
+one user but run as another, such as if you are testing with a web server.</p>
+<p>Unless the <span class="target" id="index-4"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONDONTWRITEBYTECODE"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONDONTWRITEBYTECODE</span></code></a> environment variable is set,
+creation of a .pyc file is automatic if you're importing a module and Python
+has the ability (permissions, free space, etc...) to create a <code class="docutils literal notranslate"><span class="pre">__pycache__</span></code>
+subdirectory and write the compiled module to that subdirectory.</p>
+<p>Running Python on a top level script is not considered an import and no
+<code class="docutils literal notranslate"><span class="pre">.pyc</span></code> will be created.  For example, if you have a top-level module
+<code class="docutils literal notranslate"><span class="pre">foo.py</span></code> that imports another module <code class="docutils literal notranslate"><span class="pre">xyz.py</span></code>, when you run <code class="docutils literal notranslate"><span class="pre">foo</span></code> (by
+typing <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">foo.py</span></code> as a shell command), a <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> will be created for
+<code class="docutils literal notranslate"><span class="pre">xyz</span></code> because <code class="docutils literal notranslate"><span class="pre">xyz</span></code> is imported, but no <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> file will be created for
+<code class="docutils literal notranslate"><span class="pre">foo</span></code> since <code class="docutils literal notranslate"><span class="pre">foo.py</span></code> isn't being imported.</p>
+<p>If you need to create a <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> file for <code class="docutils literal notranslate"><span class="pre">foo</span></code> -- that is, to create a
+<code class="docutils literal notranslate"><span class="pre">.pyc</span></code> file for a module that is not imported -- you can, using the
+<a class="reference internal" href="../library/py_compile.html#module-py_compile" title="py_compile: Generate byte-code files from Python source files."><code class="xref py py-mod docutils literal notranslate"><span class="pre">py_compile</span></code></a> and <a class="reference internal" href="../library/compileall.html#module-compileall" title="compileall: Tools for byte-compiling all Python source files in a directory tree."><code class="xref py py-mod docutils literal notranslate"><span class="pre">compileall</span></code></a> modules.</p>
+<p>The <a class="reference internal" href="../library/py_compile.html#module-py_compile" title="py_compile: Generate byte-code files from Python source files."><code class="xref py py-mod docutils literal notranslate"><span class="pre">py_compile</span></code></a> module can manually compile any module.  One way is to use
+the <code class="docutils literal notranslate"><span class="pre">compile()</span></code> function in that module interactively:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">py_compile</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">py_compile</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;foo.py&#39;</span><span class="p">)</span>                 
+</pre></div>
+</div>
+<p>This will write the <code class="docutils literal notranslate"><span class="pre">.pyc</span></code> to a <code class="docutils literal notranslate"><span class="pre">__pycache__</span></code> subdirectory in the same
+location as <code class="docutils literal notranslate"><span class="pre">foo.py</span></code> (or you can override that with the optional parameter
+<code class="docutils literal notranslate"><span class="pre">cfile</span></code>).</p>
+<p>You can also automatically compile all files in a directory or directories using
+the <a class="reference internal" href="../library/compileall.html#module-compileall" title="compileall: Tools for byte-compiling all Python source files in a directory tree."><code class="xref py py-mod docutils literal notranslate"><span class="pre">compileall</span></code></a> module.  You can do it from the shell prompt by running
+<code class="docutils literal notranslate"><span class="pre">compileall.py</span></code> and providing the path of a directory containing Python files
+to compile:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">compileall</span> <span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-do-i-find-the-current-module-name">
+<h3><a class="toc-backref" href="#id67">如何找到当前模块名称？</a><a class="headerlink" href="#how-do-i-find-the-current-module-name" title="永久链接至标题">¶</a></h3>
+<p>模块可以通过查看预定义的全局变量 <code class="docutils literal notranslate"><span class="pre">__name__</span></code> 找到自己的模块名称。如果它的值为 <code class="docutils literal notranslate"><span class="pre">'__main__'</span></code> ，程序将作为脚本运行。通常，通过导入使用的许多模块也提供命令行界面或自检，并且只在检查 <code class="docutils literal notranslate"><span class="pre">__name__</span></code> 之后，才执行之后的代码:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running test...&#39;</span><span class="p">)</span>
+    <span class="o">...</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-can-i-have-modules-that-mutually-import-each-other">
+<h3><a class="toc-backref" href="#id68">如何让模块相互导入？</a><a class="headerlink" href="#how-can-i-have-modules-that-mutually-import-each-other" title="永久链接至标题">¶</a></h3>
+<p>假设您有以下模块：</p>
+<p>foo.py:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bar</span> <span class="k">import</span> <span class="n">bar_var</span>
+<span class="n">foo_var</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>bar.py:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">foo</span> <span class="k">import</span> <span class="n">foo_var</span>
+<span class="n">bar_var</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>问题是解释器将执行以下步骤：</p>
+<ul class="simple">
+<li><p>首先导入foo</p></li>
+<li><p>创建用于foo的空全局变量</p></li>
+<li><p>foo被编译并开始执行</p></li>
+<li><p>foo 导入 bar</p></li>
+<li><p>创建了用于bar 的空全局变量</p></li>
+<li><p>bar被编译并开始执行</p></li>
+<li><p>bar导入foo（这是一个空操作（no-op ），因为已经有一个名为foo的模块）</p></li>
+<li><p>bar.foo_var = foo.foo_var</p></li>
+</ul>
+<p>最后一步失败了，因为Python还没有解释foo，而foo的全局符号字典仍然是空的。</p>
+<p>当你使用 <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">foo</span></code> ，然后尝试在全局代码中访问 <code class="docutils literal notranslate"><span class="pre">foo.foo_var</span></code> 时，会发生同样的事情。</p>
+<p>这个问题有（至少）三种可能的解决方法。</p>
+<p>Guido van Rossum 建议避免使用 <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">&lt;module&gt;</span> <span class="pre">import</span> <span class="pre">...</span></code> ，并将所有代码放在函数中。全局变量和类变量的初始化只能使用常量或内置函数。这意味着导入模块中的所有内容都被引用为 <code class="docutils literal notranslate"><span class="pre">&lt;module&gt;.&lt;name&gt;</span></code> 。</p>
+<p>Jim Roskind建议在每个模块中按以下顺序执行步骤：</p>
+<ul class="simple">
+<li><p>导出（全局变量，函数和不需要导入基类的类）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">导入</span></code> 声明</p></li>
+<li><p>活动代码（包括从导入值初始化的全局变量）。</p></li>
+</ul>
+<p>van Rossum不喜欢这种方法，因为导入出现在一个陌生的地方，但这种方法确实有效。</p>
+<p>Matthias Urlichs建议重构代码，以便首先不需要递归导入。</p>
+<p>这些解决方案并不相互排斥。</p>
+</div>
+<div class="section" id="import-x-y-z-returns-module-x-how-do-i-get-z">
+<h3><a class="toc-backref" href="#id69">__import__('x.y.z') 返回 &lt;module 'x'&gt;; 如何获取z?</a><a class="headerlink" href="#import-x-y-z-returns-module-x-how-do-i-get-z" title="永久链接至标题">¶</a></h3>
+<p>考虑使用 <a class="reference internal" href="../library/importlib.html#module-importlib" title="importlib: The implementation of the import machinery."><code class="xref py py-mod docutils literal notranslate"><span class="pre">importlib</span></code></a> 中的函数 <a class="reference internal" href="../library/importlib.html#importlib.import_module" title="importlib.import_module"><code class="xref py py-func docutils literal notranslate"><span class="pre">import_module()</span></code></a> ：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="s1">&#39;x.y.z&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="when-i-edit-an-imported-module-and-reimport-it-the-changes-don-t-show-up-why-does-this-happen">
+<h3><a class="toc-backref" href="#id70">当我编辑了导入过的模块并重新导入它时，这些变化没有显示出来。为什么会这样？</a><a class="headerlink" href="#when-i-edit-an-imported-module-and-reimport-it-the-changes-don-t-show-up-why-does-this-happen" title="永久链接至标题">¶</a></h3>
+<p>出于效率和一致性的原因，Python仅在第一次导入模块时读取模块文件。如果不这么做，在一个由许多模块组成的程序中，每个模块都会导入相同的基本模块，那么基本模块将被解析和重新解析多次。要强制重新读取已更改的模块，请执行以下操作:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">modname</span>
+<span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">modname</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>警告：这种技术不是100％万无一失。特别是包含如下语句的模块</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">modname</span> <span class="k">import</span> <span class="n">some_objects</span>
+</pre></div>
+</div>
+<p>将继续使用旧版本的导入对象。如果模块包含类定义，则不会更新现有的类实例以使用新的类定义。这可能导致以下矛盾行为:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">importlib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cls</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">C</span><span class="p">()</span>                <span class="c1"># Create an instance of C</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+<span class="go">&lt;module &#39;cls&#39; from &#39;cls.py&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>       <span class="c1"># isinstance is false?!?</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>如果打印出类对象的“标识”，问题的本质就会明确：</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="p">))</span>
+<span class="go">&#39;0x7352a0&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">C</span><span class="p">))</span>
+<span class="go">&#39;0x4198d0&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">编程常见问题</a><ul>
+<li><a class="reference internal" href="#general-questions">一般问题</a></li>
+<li><a class="reference internal" href="#core-language">核心语言</a></li>
+<li><a class="reference internal" href="#numbers-and-strings">数字和字符串</a></li>
+<li><a class="reference internal" href="#performance">性能</a></li>
+<li><a class="reference internal" href="#sequences-tuples-lists">序列（元组/列表）</a></li>
+<li><a class="reference internal" href="#objects">对象</a></li>
+<li><a class="reference internal" href="#modules">模块</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>上一个主题</h4>
+  <p class="topless"><a href="general.html"
+                        title="上一章">Python常见问题</a></p>
+  <h4>下一个主题</h4>
+  <p class="topless"><a href="design.html"
+                        title="下一章">设计和历史常见问题</a></p>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">提交 Bug</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.7/Doc/faq/programming.rst"
+            rel="nofollow">显示源代码
+        </a>
+      </li>
+    </ul>
+  </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>导航</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="总目录"
+             >索引</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python 模块索引"
+             >模块</a> |</li>
+        <li class="right" >
+          <a href="design.html" title="设计和历史常见问题"
+             >下一页</a> |</li>
+        <li class="right" >
+          <a href="general.html" title="Python常见问题"
+             >上一页</a> |</li>
+        <li><img src="../_static/py.png" alt=""
+                 style="vertical-align: middle; margin-top: -1px"/></li>
+        <li><a href="https://www.python.org/">Python</a> &#187;</li>
+        <li>
+          <span class="language_switcher_placeholder">zh_CN</span>
+          <span class="version_switcher_placeholder">3.7.3</span>
+          <a href="../index.html">文档</a> &#187;
+        </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Python 常见问题</a> &#187;</li>
+    <li class="right">
+        
+
+    <div class="inline-search" style="display: none" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="快速搜索" type="text" name="q" />
+          <input type="submit" value="转向" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+    <script type="text/javascript">$('.inline-search').show(0);</script>
+         |
+    </li>
+
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">版权所有</a> 2001-2019, Python Software Foundation.
+    <br />
+    Python 软件基金会是一个非盈利组织。
+    <a href="https://www.python.org/psf/donations/">请捐助。</a>
+    <br />
+    最后更新于 5月 30, 2019.
+    <a href="../bugs.html">发现了问题</a>？
+    <br />
+    使用<a href="http://sphinx.pocoo.org/">Sphinx</a>2.0.1 创建。
+    </div>
+
+  </body>
+</html>
