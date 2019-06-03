@@ -73,13 +73,18 @@ class SimpleServer(object):
             # 4.等待新客户端的链接
             client_socket,client_address = self.tcp_server_socket.accept()
 
+            new_process = multiprocessing.Process(target=self.service_client,args=(client_socket,))
             # 5.为这个客户端服务
-            self.service_client(client_socket)
-
+            new_process.start()
         # 关闭监听套接字
         tcp_server_socket.close()
 
 
 
-# 设定服务器端口号
+# 设定服务器端口号、
+port = 6789
+address = ''
 
+server_address = (address,port)
+server  = SimpleServer(server_address)
+server.run()
