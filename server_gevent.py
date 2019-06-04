@@ -84,7 +84,9 @@ class SimpleServer(object):
             gevent.spawn(self.service_client,client_socket)
 
             # new_thread.start()
-        # 关闭监听套接字
+
+
+        # 关闭监听套接 字,短连接
         tcp_server_socket.close()
 
 
